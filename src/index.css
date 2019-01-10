@@ -12,3 +12,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.loginView {
+  text-align: center !important;
+  margin: 3vh;
+}
+
+.loginPasswordInput {
+  max-width: 600px;
+}
+
+.loginDropdown {
+  font-size: 20px;
+  max-width: 600px;
+}
