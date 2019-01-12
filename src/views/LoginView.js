@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react"
 
-import { Button, Input, Dropdown, Container } from 'semantic-ui-react'
+import { Button, Input, Dropdown, Container } from "semantic-ui-react"
 
-import { fetchLoginOptions, login as serverLogin } from '../connectors/mercury-api-connector'
+import { fetchLoginOptions, login as serverLogin } from "../connectors/mercury-api-connector"
 
 class LoginView extends React.Component {
   constructor (props) {
@@ -10,10 +10,10 @@ class LoginView extends React.Component {
     this.state = {
       options: [],
       selected: null,
-      password: ''
+      password: ""
     }
     fetchLoginOptions().then(options => {
-      this.setState({ options })
+      this.setState({options})
     })
   }
 
@@ -27,13 +27,13 @@ class LoginView extends React.Component {
   render () {
     return (<div>
       <Container className="loginView">
-        <Dropdown className="loginDropdown" fluid selection placeholder={'Select Login Option'}
+        <Dropdown className="loginDropdown" fluid selection placeholder={"Select Login Option"}
           options={this.state.options}
           onChange={(e, data) => {
-            this.setState({ selected: data.value })
+            this.setState({selected: data.value})
           }}/><br/>
         <Input className="loginPasswordInput" fluid type="password" onChange={(e, data) => {
-          this.setState({ password: data.value })
+          this.setState({password: data.value})
         }}/>
         <Button onClick={this.login.bind(this)}>Login</Button>
       </Container>

@@ -2,7 +2,7 @@ import Axios from 'axios'
 
 export function fetchLoginOptions () {
   return new Promise(function (resolve) {
-    resolve([{ text: 'scouting', value: 'scouting' }, { text: 'tactics', value: 'tactics' }])
+    resolve([{text: 'scouting', value: 'scouting'}, {text: 'tactics', value: 'tactics'}])
   })
 }
 

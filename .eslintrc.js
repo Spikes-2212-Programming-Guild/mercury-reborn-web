@@ -22,7 +22,7 @@ module.exports = {
 
   plugins: ["react"],
   rules: {
-    indent: ["error", "tab"],
+    indent: ["error", 2],
     "linebreak-style": ["error", "unix"],
     quotes: ["error", "double"],
     "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],
