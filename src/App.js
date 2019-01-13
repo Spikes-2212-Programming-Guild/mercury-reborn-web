@@ -7,13 +7,13 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      key: localStorage.getItem("key") || "-1"
+      key: localStorage.getItem("key") || null
     }
     this.updateKey = this.updateKey.bind(this)
   }
 
   updateKey(key) {
-    this.setState({key: key})
+    this.setState({key})
   }
 
   render () {
@@ -21,11 +21,10 @@ class App extends React.Component {
       <Switch>
         <Route path="/" exact render={
           () => {
-            switch(this.state.key) {
-            case "-1":
-              return <LoginView updateKey={this.updateKey} />
-            default:
+            if(this.state.key) {
               return <Homepage />
+            } else {
+              return <LoginView updateKey={this.updateKey} />
             }
           }
         } />
