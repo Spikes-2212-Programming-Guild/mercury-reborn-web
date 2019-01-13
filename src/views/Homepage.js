@@ -1,9 +1,13 @@
 import React from "react"
+import Text from "../components/questions/text"
 
 class Homepage extends React.Component {
   render() {
     return (
-      <h1>Homepage</h1>
+      <div>
+        <h1>Homepage</h1>
+        <Text />
+      </div>
     )
   }
 }
