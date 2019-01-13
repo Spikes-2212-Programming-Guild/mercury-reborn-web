@@ -11,7 +11,5 @@ export function login (loginType, password) {
     params: {
       password: password
     }
-  }).then(function (response) {
-    return response.data
-  })
+  }).then(response => response.data)
 }
