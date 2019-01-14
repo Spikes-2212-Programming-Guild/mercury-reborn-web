@@ -6,15 +6,13 @@ import Boolean from "../components/questions/boolean"
 
 class Homepage extends React.Component {
   render() {
-    return (
-      <div>
-        <h1>Homepage</h1>
-        <Text />
-        <Number min={1} />
-        <Enum options={["uno", "dos", "tres"]} selected="tres" />
-        <Boolean selected="true" />
-      </div>
-    )
+    return (<div>
+      <h1>Homepage</h1>
+      <Text />
+      <Number min={1} />
+      <Enum options={["uno", "dos", "tres"]} selected="tres" />
+      <Boolean selected="true" />
+    </div>)
   }
 }
 
