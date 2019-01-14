@@ -1,4 +1,5 @@
 import React from "react"
+import propTypes from "prop-types"
 import {Button} from "semantic-ui-react"
 
 class Enum extends React.Component {
@@ -6,7 +7,7 @@ class Enum extends React.Component {
     super(props)
     this.state = {
       options: this.props.options,
-      selected: this.props.selected,
+      selected: this.props.options[0],
     }
   }
 
@@ -19,6 +20,10 @@ class Enum extends React.Component {
       {this.state.options.map(opt => <Button active={this.state.selected === opt} onClick={e => this.handleClick(e, opt)}>{opt}</Button>)}
     </div>)
   }
+}
+
+Enum.propTypes = {
+  options: propTypes.array
 }
 
 export default Enum

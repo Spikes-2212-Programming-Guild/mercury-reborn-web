@@ -1,4 +1,5 @@
 import React from "react"
+import propTypes from "prop-types"
 import {Button, Label} from "semantic-ui-react"
 
 class Number extends React.Component {
@@ -21,11 +22,16 @@ class Number extends React.Component {
 
   render() {
     return (<div>
-      <Button attached="left" onClick={(e) => this.handleMinusClick(e)}>-</Button>
+      <Button attached="left" onClick={this.handleMinusClick.bind(this)}>-</Button>
       <Label>{this.state.num}</Label>
-      <Button attached="right" onClick={(e) => this.handlePlusClick(e)}>+</Button>
+      <Button attached="right" onClick={this.handlePlusClick.bind(this)}>+</Button>
     </div>)
   }
+}
+
+Number.propTypes = {
+  min: propTypes.number,
+  num: propTypes.number
 }
 
 export default Number

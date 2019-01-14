@@ -1,8 +1,10 @@
 import React from "react"
 import Enum from "./enum"
 
-export default function Boolean(props) {
+function Boolean() {
   return (<div>
-    <Enum options={["true", "false"]} selected={props.selected} />
+    <Enum options={["true", "false"]} />
   </div>)
 }
+
+export default Boolean

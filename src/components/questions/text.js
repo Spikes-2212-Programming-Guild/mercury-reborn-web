@@ -1,4 +1,5 @@
 import React from "react"
+import propTypes from "prop-types"
 import {Input} from "semantic-ui-react"
 
 class Text extends React.Component {
