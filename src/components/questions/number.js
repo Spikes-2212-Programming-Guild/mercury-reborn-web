@@ -32,12 +32,12 @@ class Number extends React.Component {
       {this.state.helpers ? <Button attached="right" onClick={this.handlePlusClick.bind(this)}>+</Button> : ""}
     </div>)
   }
-}
 
-Number.propTypes = {
-  min: propTypes.number,
-  num: propTypes.number,
-  helpers: propTypes.bool
+  static propTypes = {
+    min: propTypes.number,
+    num: propTypes.number,
+    helpers: propTypes.bool
+  }
 }
 
 export default Number
