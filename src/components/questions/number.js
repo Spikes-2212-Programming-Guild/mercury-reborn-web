@@ -12,6 +12,12 @@ class Number extends React.Component {
     }
   }
 
+  static propTypes = {
+    min: propTypes.number,
+    num: propTypes.number,
+    helpers: propTypes.bool
+  }
+
   handleMinusClick (e) {
     if(this.state.num > this.state.min)
       this.setState({num: this.state.num - 1})
@@ -31,12 +37,6 @@ class Number extends React.Component {
       {this.state.helpers ? <Label>{this.state.num}</Label> : <Input onChange={this.handleChange.bind(this)} />}
       {this.state.helpers ? <Button attached="right" onClick={this.handlePlusClick.bind(this)}>+</Button> : ""}
     </div>)
-  }
-
-  static propTypes = {
-    min: propTypes.number,
-    num: propTypes.number,
-    helpers: propTypes.bool
   }
 }
 

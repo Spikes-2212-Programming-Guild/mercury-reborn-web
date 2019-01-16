@@ -11,6 +11,10 @@ class Enum extends React.Component {
     }
   }
 
+  static propTypes = {
+    options: propTypes.array
+  }
+
   handleClick(e, opt) {
     this.setState({selected: opt})
   }
@@ -19,10 +23,6 @@ class Enum extends React.Component {
     return (<div>
       {this.state.options.map(opt => <Button active={this.state.selected === opt} onClick={e => this.handleClick(e, opt)}>{opt}</Button>)}
     </div>)
-  }
-
-  static propTypes = {
-    options: propTypes.array
   }
 }
 
