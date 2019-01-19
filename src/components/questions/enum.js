@@ -7,7 +7,6 @@ class Enum extends React.Component {
     super(props)
     this.state = {
       options: this.props.options,
-      selected: this.props.options[0],
     }
   }
 
