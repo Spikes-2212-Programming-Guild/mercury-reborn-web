@@ -1,6 +1,7 @@
 import React from "react"
 import propTypes from "prop-types"
 import {Button, Input} from "semantic-ui-react"
+import "./style.css"
 
 class Number extends React.Component {
   constructor(props) {
@@ -36,15 +37,15 @@ class Number extends React.Component {
       <Input
         type="number"
         labelPosition="right"
-        className="ui labeled input"
+        className="ui labeled input number-input"
         value={this.state.num}
         onChange={this.handleChange.bind(this)}
       >
         {this.state.helpers &&
-          <Button className="label" onClick={this.handleMinusClick.bind(this)}>-</Button>}
+        <Button className="label" onClick={this.handleMinusClick.bind(this)}>-</Button>}
         <input />
         {this.state.helpers &&
-          <Button className="label" onClick={this.handlePlusClick.bind(this)}>+</Button>}
+        <Button className="label" onClick={this.handlePlusClick.bind(this)}>+</Button>}
       </Input>
     </div>)
   }
