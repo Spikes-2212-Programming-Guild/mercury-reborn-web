@@ -38,3 +38,7 @@ code {
     font-size: 20px;
     max-width: 600px;
 }
+
+* {
+    margin: 0.5em 0px;
+}
