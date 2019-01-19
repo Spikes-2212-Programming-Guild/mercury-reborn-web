@@ -2,7 +2,7 @@ import React from "react"
 import propTypes from "prop-types"
 import Enum from "./questions/enum"
 import Boolean from "./questions/boolean"
-import Number from "./questions/number"
+import Number from "./questions/number/"
 import Text from "./questions/text"
 import {Form, Label} from "semantic-ui-react"
 
