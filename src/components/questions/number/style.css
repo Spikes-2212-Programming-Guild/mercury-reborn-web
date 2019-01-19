@@ -4,6 +4,6 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     margin: 0;
 }
 
-div.number-input {
+input.number-input {
     max-width: 4em !important;
 }
