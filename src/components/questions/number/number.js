@@ -29,7 +29,9 @@ class Number extends React.Component {
   }
 
   handleChange(e, data) {
-    this.setState({num: parseInt(data.value)})
+    if(data.value) {
+      this.setState({num: parseInt(data.value)})
+    }
   }
 
   render() {
@@ -37,13 +39,13 @@ class Number extends React.Component {
       <Input
         type="number"
         labelPosition="right"
-        className="ui labeled input number-input"
+        className="ui labeled input"
         value={this.state.num}
         onChange={this.handleChange.bind(this)}
       >
         {this.state.helpers &&
         <Button className="label" onClick={this.handleMinusClick.bind(this)}>-</Button>}
-        <input />
+        <input className="number-input" style={{textAlign: "center"}} />
         {this.state.helpers &&
         <Button className="label" onClick={this.handlePlusClick.bind(this)}>+</Button>}
       </Input>
