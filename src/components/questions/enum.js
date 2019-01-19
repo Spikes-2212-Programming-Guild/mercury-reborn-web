@@ -19,9 +19,9 @@ class Enum extends React.Component {
   }
 
   render() {
-    return (<div>
+    return (<Button.Group>
       {this.state.options.map(opt => <Button active={this.state.selected === opt} onClick={e => this.handleClick(e, opt)}>{opt}</Button>)}
-    </div>)
+    </Button.Group>)
   }
 }
 
