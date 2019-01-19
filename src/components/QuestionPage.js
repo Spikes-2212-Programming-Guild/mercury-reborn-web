@@ -30,7 +30,7 @@ class QuestionPage extends React.Component {
   render() {
     return (<div>
       <Form>
-        {this.state.questions.map((question, index) => (QuestionRegistry[question.type](question, index)))}
+        {this.state.questions.map((question, index) => (<div><Label>{question.name}</Label><div>{QuestionRegistry[question.type](question, index)}</div></div>))}
       </Form>
     </div>)
   }
