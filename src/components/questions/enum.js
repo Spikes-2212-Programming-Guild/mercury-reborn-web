@@ -7,7 +7,6 @@ class Enum extends React.Component {
     super(props)
     this.state = {
       options: this.props.options,
-      selected: this.props.options[0],
     }
   }
 
@@ -20,9 +19,9 @@ class Enum extends React.Component {
   }
 
   render() {
-    return (<div>
+    return (<Button.Group>
       {this.state.options.map(opt => <Button active={this.state.selected === opt} onClick={e => this.handleClick(e, opt)}>{opt}</Button>)}
-    </div>)
+    </Button.Group>)
   }
 }
 

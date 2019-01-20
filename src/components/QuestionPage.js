@@ -2,7 +2,7 @@ import React from "react"
 import propTypes from "prop-types"
 import Enum from "./questions/enum"
 import Boolean from "./questions/boolean"
-import Number from "./questions/number"
+import Number from "./questions/number/"
 import Text from "./questions/text"
 import {Form, Label} from "semantic-ui-react"
 
@@ -30,7 +30,7 @@ class QuestionPage extends React.Component {
   render() {
     return (<div>
       <Form>
-        {this.state.questions.map((question, index) => (QuestionRegistry[question.type](question, index)))}
+        {this.state.questions.map((question, index) => (<div><Label>{question.name}</Label><div>{QuestionRegistry[question.type](question, index)}</div></div>))}
       </Form>
     </div>)
   }

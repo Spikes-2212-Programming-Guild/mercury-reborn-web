@@ -1,6 +1,7 @@
 import React from "react"
 import propTypes from "prop-types"
-import {Button, Label, Input} from "semantic-ui-react"
+import {Button, Input} from "semantic-ui-react"
+import "./style.css"
 
 class Number extends React.Component {
   constructor(props) {
@@ -28,14 +29,26 @@ class Number extends React.Component {
   }
 
   handleChange(e, data) {
-    this.setState({num: Number(data.value)})
+    if(data.value) {
+      this.setState({num: parseInt(data.value)})
+    }
   }
 
   render() {
     return (<div>
-      {this.state.helpers ? <Button attached="left" onClick={this.handleMinusClick.bind(this)}>-</Button> : ""}
-      {this.state.helpers ? <Label>{this.state.num}</Label> : <Input onChange={this.handleChange.bind(this)} />}
-      {this.state.helpers ? <Button attached="right" onClick={this.handlePlusClick.bind(this)}>+</Button> : ""}
+      <Input
+        type="number"
+        labelPosition="right"
+        className="ui labeled input"
+        value={this.state.num}
+        onChange={this.handleChange.bind(this)}
+      >
+        {this.state.helpers &&
+        <Button className="label" onClick={this.handleMinusClick.bind(this)}>-</Button>}
+        <input className="number-input" style={{textAlign: "center"}} />
+        {this.state.helpers &&
+        <Button className="label" onClick={this.handlePlusClick.bind(this)}>+</Button>}
+      </Input>
     </div>)
   }
 }
