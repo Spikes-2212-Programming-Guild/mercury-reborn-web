@@ -9,6 +9,7 @@ class App extends React.Component {
     this.state = {
       key: localStorage.getItem("key") || null
     }
+    this.updateKey = this.updateKey.bind(this)
   }
 
   updateKey(key) {
@@ -23,7 +24,7 @@ class App extends React.Component {
             if(this.state.key) {
               return <Homepage />
             } else {
-              return <LoginView updateKey={this.updateKey.bind(this)} />
+              return <LoginView updateKey={this.updateKey} />
             }
           }
         } />

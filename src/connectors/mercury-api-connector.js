@@ -1,8 +1,8 @@
-import Axios from 'axios'
+import Axios from "axios"
 
 export function fetchLoginOptions () {
   return new Promise(function (resolve) {
-    resolve([{text: 'scouting', value: 'scouting'}, {text: 'tactics', value: 'tactics'}])
+    resolve([{text: "scouting", value: "scouting"}, {text: "tactics", value: "tactics"}])
   })
 }
 
@@ -11,7 +11,5 @@ export function login (loginType, password) {
     params: {
       password: password
     }
-  }).then(function (response) {
-    return response.data
-  })
+  }).then(response => response.data)
 }

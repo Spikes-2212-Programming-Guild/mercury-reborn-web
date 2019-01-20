@@ -21,7 +21,11 @@ class LoginView extends React.Component {
     serverLogin(this.state.selected, this.state.password).then(
       (data) => {
         console.log(data)
-      })
+        localStorage.setItem("key", data)
+        this.props.updateKey(data)
+      }).catch((err) => {
+      alert(err.message)
+    })
   }
 
   render () {
@@ -33,7 +37,7 @@ class LoginView extends React.Component {
             this.setState({selected: data.value})
           }}/><br/>
         <Input className="loginPasswordInput" fluid type="password" onChange={(e, data) => {
-          this.setState({password: data.value})
+          this.setState({password: data.value.toString()})
         }}/>
         <Button onClick={this.login.bind(this)}>Login</Button>
       </Container>

@@ -1,0 +1,9 @@
+/* Disable spinner in Number input field */
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input.number-input {
+    max-width: 4em !important;
+}
