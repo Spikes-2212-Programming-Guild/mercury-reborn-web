@@ -1,4 +1,4 @@
-import Axios from "axios"
+import axios from "axios"
 
 export function fetchLoginOptions () {
   return new Promise(function (resolve) {
@@ -7,7 +7,7 @@ export function fetchLoginOptions () {
 }
 
 export function login (loginType, password) {
-  return Axios.get(`/login/${loginType}`, {
+  return axios.get(`/login/${loginType}`, {
     params: {
       password: password
     }
