@@ -13,3 +13,8 @@ export function login (loginType, password) {
     }
   }).then(response => response.data)
 }
+
+export function fetchTBAKey() {
+  return axios.get("/config/tba-key/")
+    .then(response => response.data)
+}
