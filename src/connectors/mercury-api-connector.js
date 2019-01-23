@@ -17,5 +17,5 @@ async function fetchConfigOption(option) {
 }
 
 export const fetchTBAKey = () => fetchConfigOption("tba-key")
-export const fetchEventName = () => fetchConfigOption("event-name")
+export const fetchEventKey = () => fetchConfigOption("event-name")
 export const fetchScoutingForm = () => fetchConfigOption("form")
