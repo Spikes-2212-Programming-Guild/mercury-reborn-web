@@ -15,6 +15,10 @@ export function login (loginType, password) {
 }
 
 export function fetchTBAKey() {
+  console.log("bla")
   return axios.get("/config/tba-key/")
-    .then(response => response.data)
+    .then(response => {
+      console.log(response)
+      return response.data
+    })
 }
