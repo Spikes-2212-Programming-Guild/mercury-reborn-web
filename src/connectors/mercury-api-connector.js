@@ -12,11 +12,10 @@ export async function login (loginType, password) {
   })).data
 }
 
-export function fetchTBAKey() {
-  console.log("bla")
-  return axios.get("/config/tba-key/")
-    .then(response => {
-      console.log(response)
-      return response.data
-    })
+async function fetchConfigOption(option) {
+  return (await axios.get(`/config/${option}`)).data
 }
+
+export const fetchTBAKey = () => fetchConfigOption("tba-key")
+export const fetchEventName = () => fetchConfigOption("event-name")
+export const fetchScoutingForm = () => fetchConfigOption("form")
