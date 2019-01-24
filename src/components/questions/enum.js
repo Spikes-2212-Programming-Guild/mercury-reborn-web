@@ -7,15 +7,17 @@ class Enum extends React.Component {
     super(props)
     this.state = {
       options: this.props.options,
+      set: this.props.set
     }
   }
 
   static propTypes = {
-    options: propTypes.array
+    options: propTypes.array,
+    set: propTypes.func
   }
 
   handleClick(e, opt) {
-    this.setState({selected: opt})
+    this.setState({selected: opt}).then(() => {this.state.set(this.state.num)})
   }
 
   render() {
