@@ -1,5 +1,4 @@
 import axios from "axios"
-import {fetchTBAKey} from "./mercury-api-connector"
 import * as mercuryAPI from "./mercury-api-connector"
 
 const tbaAddress = "https://www.thebluealliance.com/api/v3"
@@ -12,7 +11,7 @@ const compLevelOrder = {
 }
 
 export async function checkStatus() {
-  const tbaKey = await fetchTBAKey()
+  const tbaKey = await mercuryAPI.fetchTBAKey()
 
   const statusResponse = await axios.get(`${tbaAddress}/status`, {
     headers: {
@@ -22,10 +21,7 @@ export async function checkStatus() {
   return statusResponse.status
 }
 
-export async function fetchGamesForEvent() {
-  const tbaKey = await fetchTBAKey()
-  const eventKey = await mercuryAPI.fetchEventKey()
-
+async function fetchGamesForEvent(tbaKey, eventKey) {
   const result = (await axios.get(`${tbaAddress}/event/${eventKey}/matches/simple`, {
     headers: {
       "X-TBA-Auth-Key": tbaKey
@@ -45,4 +41,10 @@ export async function fetchGamesForEvent() {
     if (a < b) return -1
     return 0
   })
+}
+
+export async function fetchGamesForCurrentEvent() {
+  const tbaKey = await mercuryAPI.fetchTBAKey()
+  const eventKey = await mercuryAPI.fetchEventKey()
+  return await fetchGamesForEvent(tbaKey, eventKey)
 }
