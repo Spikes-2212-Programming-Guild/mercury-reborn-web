@@ -7,13 +7,13 @@ class Enum extends React.Component {
     super(props)
     this.state = {
       options: this.props.options,
-      set: this.props.set
+      set: this.props.valueConsumer
     }
   }
 
   static propTypes = {
     options: propTypes.array,
-    set: propTypes.func
+    valueConsumer: propTypes.func
   }
 
   handleClick(e, opt) {
