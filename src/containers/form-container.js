@@ -20,6 +20,12 @@ class FormContainer extends Container {
 
     this.setState({form: newForm})
   }
+
+  set(section, question, answer) {
+    const form = this.state.form
+    form[section][question] = answer
+    this.setState({form})
+  }
 }
 
 export default FormContainer
