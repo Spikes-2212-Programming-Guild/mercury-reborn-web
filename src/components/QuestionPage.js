@@ -26,7 +26,6 @@ class QuestionPage extends React.Component {
     questions: propTypes.array
   }
 
-
   render() {
     return (<div>
       <Form>
