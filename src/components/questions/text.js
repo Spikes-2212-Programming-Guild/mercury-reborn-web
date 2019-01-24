@@ -5,7 +5,8 @@ class Text extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      text: ""
+      text: "",
+      valueConsumer: this.props.valueConsumer
     }
   }
 
