@@ -9,9 +9,15 @@ class Text extends React.Component {
     }
   }
 
+  handleChange = (e, data) => {
+    this.setState({text: data.value.toString()}).then(() => {
+      this.state.set(this.state.num)
+    })
+  }
+
   render() {
     return (
-      <Input onChange={(e, data) => this.setState({text: data.value.toString()}).then(() => {this.state.set(this.state.num)})} />
+      <Input onChange={this.handleChange().bind(this)} />
     )
   }
 }
