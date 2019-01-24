@@ -22,19 +22,22 @@ class Number extends React.Component {
   }
 
   handleMinusClick (e) {
-    if(this.state.num > this.state.min) {
-      this.setState({num: this.state.num - 1}).then(() => {this.state.set(this.state.num)})
-    }
+    this.saveAll(this.state.num - 1)
   }
 
   handlePlusClick (e) {
-    this.setState({num: this.state.num + 1}).then(() => {this.state.set(this.state.num)})
+    this.saveAll(this.state.num + 1)
   }
 
   handleChange(e, data) {
     if(data.value) {
-      this.setState({num: parseInt(data.value)}).then(() => {this.state.set(this.state.num)})
+      this.saveAll(data)
     }
+  }
+
+  saveAll(data) {
+    this.setState({num: parseInt(data.value)})
+    this.state.set(this.state.num)
   }
 
   render() {
