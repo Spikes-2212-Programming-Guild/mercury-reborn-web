@@ -10,9 +10,12 @@ class Text extends React.Component {
   }
 
   handleChange = (e, data) => {
-    this.setState({text: data.value.toString()}).then(() => {
-      this.state.set(this.state.num)
-    })
+    this.saveAll(data)
+  }
+
+  saveAll(data) {
+    this.setState({text: data})
+    this.state.set(this.state.text)
   }
 
   render() {
