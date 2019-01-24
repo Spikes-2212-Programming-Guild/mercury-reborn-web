@@ -18,18 +18,20 @@ class QuestionPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      questions: this.props.questions
+      questions: this.props.questions,
+      set: this.props.set
     }
   }
 
   static propTypes = {
-    questions: propTypes.array
+    questions: propTypes.array,
+    set: propTypes.func
   }
 
   render() {
     return (<div>
       <Form>
-        {this.state.questions.map((question, index) => (<div><Label>{question.name}</Label><div>{QuestionRegistry[question.type](question, index)}</div></div>))}
+        {this.state.questions.map((question, index) => (<div><Label>{question.name}</Label><div>{QuestionRegistry[question.type](question, index, (answer) => this.set(answer))}</div></div>))}
       </Form>
     </div>)
   }
