@@ -10,7 +10,7 @@ class Number extends React.Component {
       min: this.props.min,
       num: this.props.min,
       helpers: this.props.helpers,
-      set: this.props.set,
+      valueConsumer: this.props.valueConsumer,
     }
   }
 
@@ -18,7 +18,7 @@ class Number extends React.Component {
     min: propTypes.number,
     num: propTypes.number,
     helpers: propTypes.bool,
-    set: propTypes.func,
+    valueConsumer: propTypes.func,
   }
 
   handleMinusClick (e) {
