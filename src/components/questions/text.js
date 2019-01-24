@@ -11,7 +11,7 @@ class Text extends React.Component {
 
   render() {
     return (
-      <Input onChange={(e, data) => this.setState({text: data.value.toString()})} />
+      <Input onChange={(e, data) => this.setState({text: data.value.toString()}).then(() => {this.state.set(this.state.num)})} />
     )
   }
 }
