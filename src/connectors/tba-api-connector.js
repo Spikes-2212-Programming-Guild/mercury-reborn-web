@@ -21,7 +21,7 @@ export async function checkStatus() {
   return statusResponse.status
 }
 
-async function fetchGamesForEvent(tbaKey, eventKey) {
+async function fetchMatchesForEvent(tbaKey, eventKey) {
   const result = (await axios.get(`${tbaAddress}/event/${eventKey}/matches/simple`, {
     headers: {
       "X-TBA-Auth-Key": tbaKey
@@ -43,8 +43,8 @@ async function fetchGamesForEvent(tbaKey, eventKey) {
   })
 }
 
-export async function fetchGamesForCurrentEvent() {
+export async function fetchMatchesForCurrentEvent() {
   const tbaKey = await mercuryAPI.fetchTBAKey()
   const eventKey = await mercuryAPI.fetchEventKey()
-  return await fetchGamesForEvent(tbaKey, eventKey)
+  return await fetchMatchesForEvent(tbaKey, eventKey)
 }
