@@ -15,7 +15,7 @@ class Text extends React.Component {
 
   saveAll(data) {
     this.setState({text: data})
-    this.state.set(this.state.text)
+    this.state.valueConsumer(this.state.text)
   }
 
   render() {

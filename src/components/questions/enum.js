@@ -7,7 +7,7 @@ class Enum extends React.Component {
     super(props)
     this.state = {
       options: this.props.options,
-      set: this.props.valueConsumer
+      valueConsumer: this.props.valueConsumer
     }
   }
 
@@ -22,7 +22,7 @@ class Enum extends React.Component {
 
   saveAll(data) {
     this.setState({selected: data})
-    this.state.set(this.state.num)
+    this.state.valueConsumer(this.state.num)
   }
 
   render() {

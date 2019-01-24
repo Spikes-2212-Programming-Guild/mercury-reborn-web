@@ -37,7 +37,7 @@ class Number extends React.Component {
 
   saveAll(data) {
     this.setState({num: parseInt(data.value)})
-    this.state.set(this.state.num)
+    this.state.valueConsumer(this.state.num)
   }
 
   render() {
