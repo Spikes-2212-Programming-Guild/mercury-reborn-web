@@ -9,7 +9,16 @@ class FormContainer extends Container {
   }
 
   initialize(form) {
-    this.setState({form})
+    this.setState({form: {}})
+    const newForm = {}
+    Object.keys(form).map(section => {
+      newForm[section] = {}
+      form[section].map(question => {
+        newForm[section][question.name] = ""
+      })
+    })
+
+    this.setState({form: newForm})
   }
 }
 
