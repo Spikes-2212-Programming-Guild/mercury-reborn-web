@@ -10,27 +10,30 @@ class Number extends React.Component {
       min: this.props.min,
       num: this.props.min,
       helpers: this.props.helpers,
+      set: this.props.set,
     }
   }
 
   static propTypes = {
     min: propTypes.number,
     num: propTypes.number,
-    helpers: propTypes.bool
+    helpers: propTypes.bool,
+    set: propTypes.func,
   }
 
   handleMinusClick (e) {
-    if(this.state.num > this.state.min)
-      this.setState({num: this.state.num - 1})
+    if(this.state.num > this.state.min) {
+      this.setState({num: this.state.num - 1}).then(() => {this.state.set(this.state.num)})
+    }
   }
 
   handlePlusClick (e) {
-    this.setState({num: this.state.num + 1})
+    this.setState({num: this.state.num + 1}).then(() => {this.state.set(this.state.num)})
   }
 
   handleChange(e, data) {
     if(data.value) {
-      this.setState({num: parseInt(data.value)})
+      this.setState({num: parseInt(data.value)}).then(() => {this.state.set(this.state.num)})
     }
   }
 
