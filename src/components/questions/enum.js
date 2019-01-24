@@ -17,7 +17,12 @@ class Enum extends React.Component {
   }
 
   handleClick(e, opt) {
-    this.setState({selected: opt}).then(() => {this.state.set(this.state.num)})
+    this.saveAll(opt)
+  }
+
+  saveAll(data) {
+    this.setState({selected: data})
+    this.state.set(this.state.num)
   }
 
   render() {
