@@ -21,7 +21,7 @@ class ScoutingForm extends React.Component {
 
   render() {
     return <Provider inject={[this.container]}>
-
+      
     </Provider>
   }
 }
