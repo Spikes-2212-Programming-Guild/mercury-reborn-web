@@ -21,7 +21,8 @@ class ScoutingForm extends React.Component {
 
   render() {
     return <Provider inject={[this.container]}>
-      {Object.keys(fetchScoutingForm()).map(section => <QuestionPage questions={section.questions} set={(answer, question) => this.container.set(section.name, question.name, answer)} />)}
+      {Object.keys(fetchScoutingForm()).map(section => <QuestionPage questions={section.questions}
+        set={(answer, question) => this.container.set(section.name, question.name, answer)}/>)}
     </Provider>
   }
 }
