@@ -1,14 +1,10 @@
 import axios from "axios"
 import * as mercuryAPI from "../mercury-api-connector"
+import {filterScoutingMenuProperties, sortMatchesByCompLevel} from "./data-filters"
 
 const tbaAddress = "https://www.thebluealliance.com/api/v3"
 
-const compLevelOrder = {
-  qm: 0,
-  qf: 1,
-  sf: 2,
-  f: 3
-}
+
 
 export async function initializeConnection() {
   const tbaKey = await mercuryAPI.fetchEventKey()
@@ -30,7 +26,11 @@ async function fetchMatchesForEvent(eventKey, pipeline) {
   return result
 }
 
-export async function fetchMatchesForCurrentEvent() {
+async function fetchMatchesForCurrentEvent(pipeline) {
   const eventKey = await mercuryAPI.fetchEventKey()
-  return await fetchMatchesForEvent(eventKey)
+  return await fetchMatchesForEvent(eventKey, pipeline)
+}
+
+export function fetchMatchesForScoutingMenu() {
+  return fetchMatchesForCurrentEvent([filterScoutingMenuProperties, sortMatchesByCompLevel])
 }
