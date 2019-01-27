@@ -10,23 +10,18 @@ const compLevelOrder = {
   f: 3
 }
 
-export async function checkStatus() {
-  const tbaKey = await mercuryAPI.fetchTBAKey()
+export async function initializeConnection() {
+  const tbaKey = await mercuryAPI.fetchEventKey()
+  axios.defaults.headers.common["X-TBA-Auth-Key"] = tbaKey
+}
 
-  const statusResponse = await axios.get(`${tbaAddress}/status`, {
-    headers: {
-      "X-TBA-Auth-Key": tbaKey
-    }
-  })
+export async function checkStatus() {
+  const statusResponse = await axios.get(`${tbaAddress}/status`)
   return statusResponse.status
 }
 
-async function fetchMatchesForEvent(tbaKey, eventKey) {
-  const result = (await axios.get(`${tbaAddress}/event/${eventKey}/matches/simple`, {
-    headers: {
-      "X-TBA-Auth-Key": tbaKey
-    }
-  })).data
+async function fetchMatchesForEvent(eventKey) {
+  const result = (await axios.get(`${tbaAddress}/event/${eventKey}/matches/simple`)).data
 
   return result.map(game => ({
     number: game.match_number,
@@ -44,7 +39,6 @@ async function fetchMatchesForEvent(tbaKey, eventKey) {
 }
 
 export async function fetchMatchesForCurrentEvent() {
-  const tbaKey = await mercuryAPI.fetchTBAKey()
   const eventKey = await mercuryAPI.fetchEventKey()
-  return await fetchMatchesForEvent(tbaKey, eventKey)
+  return await fetchMatchesForEvent(eventKey)
 }
