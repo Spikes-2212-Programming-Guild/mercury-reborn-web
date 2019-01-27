@@ -1,15 +1,21 @@
-import Axios from "axios"
+import axios from "axios"
 
-export function fetchLoginOptions () {
-  return new Promise(function (resolve) {
-    resolve([{text: "scouting", value: "scouting"}, {text: "tactics", value: "tactics"}])
-  })
+export async function fetchLoginOptions () {
+  return [{text: "scouting", value: "scouting"}, {text: "tactics", value: "tactics"}]
 }
 
-export function login (loginType, password) {
-  return Axios.get(`/login/${loginType}`, {
+export async function login (loginType, password) {
+  return (await axios.get(`/login/${loginType}`, {
     params: {
       password: password
     }
-  }).then(response => response.data)
+  })).data
 }
+
+async function fetchConfigOption(option) {
+  return (await axios.get(`/config/${option}`)).data
+}
+
+export const fetchTBAKey = () => fetchConfigOption("tba-key")
+export const fetchEventKey = () => fetchConfigOption("event-name")
+export const fetchScoutingForm = () => fetchConfigOption("form")
