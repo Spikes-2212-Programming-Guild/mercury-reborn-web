@@ -20,11 +20,13 @@ export async function checkStatus() {
   return statusResponse.status
 }
 
-async function fetchMatchesForEvent(eventKey, filter) {
-  const result = (await axios.get(`${tbaAddress}/event/${eventKey}/matches/simple`)).data
+async function fetchMatchesForEvent(eventKey, pipeline) {
+  let result = (await axios.get(`${tbaAddress}/event/${eventKey}/matches/simple`)).data
 
-  if (filter)
-    return filter(result)
+  if (pipeline && pipeline !== []) {
+    pipeline.map(fn => {result = fn(result)})
+    return result
+  }
   return result
 }
 
