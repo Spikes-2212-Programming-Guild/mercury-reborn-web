@@ -7,8 +7,7 @@ const tbaAddress = "https://www.thebluealliance.com/api/v3"
 
 
 export async function initializeConnection() {
-  const tbaKey = await mercuryAPI.fetchEventKey()
-  axios.defaults.headers.common["X-TBA-Auth-Key"] = tbaKey
+  axios.defaults.headers.common["X-TBA-Auth-Key"] = await mercuryAPI.fetchEventKey()
 }
 
 export async function checkStatus() {
