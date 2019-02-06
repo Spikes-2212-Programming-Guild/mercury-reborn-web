@@ -16,21 +16,14 @@ export async function checkStatus() {
   return statusResponse.status
 }
 
-async function fetchMatchesForEvent(eventKey, pipeline) {
-  let result = (await axios.get(`${tbaAddress}/event/${eventKey}/matches/simple`)).data
-
-  if (pipeline && pipeline !== []) {
-    pipeline.map(fn => {result = fn(result)})
-    return result
-  }
-  return result
+async function fetchMatchesForEvent(eventKey) {
+  return (await axios.get(`${tbaAddress}/event/${eventKey}/matches/simple`)).data
 }
 
-async function fetchMatchesForCurrentEvent(pipeline) {
+export async function fetchMatchesForScoutingMenu() {
   const eventKey = await mercuryAPI.fetchEventKey()
-  return await fetchMatchesForEvent(eventKey, pipeline)
-}
-
-export function fetchMatchesForScoutingMenu() {
-  return fetchMatchesForCurrentEvent([filterScoutingMenuProperties, sortMatchesByCompLevel])
+  let matches = await fetchMatchesForEvent(eventKey)
+  matches = filterScoutingMenuProperties(matches)
+  matches = sortMatchesByCompLevel(matches)
+  return matches
 }
