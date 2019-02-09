@@ -21,39 +21,38 @@ class Number extends React.Component {
     valueConsumer: propTypes.func,
   }
 
-  handleMinusClick (e) {
-    this.saveAll(this.state.num - 1)
+  handleMinusClick = e => {
+      this.saveAll(this.state.num - 1)
   }
 
-  handlePlusClick (e) {
-    this.saveAll(this.state.num + 1)
+  handlePlusClick = e => {
+    this.saveAll(parseInt(this.state.num) + 1)
   }
 
-  handleChange(e, data) {
+  handleChange = (e, data) => {
     if(data.value) {
-      this.saveAll(data)
+      this.saveAll(parseInt(data.value))
     }
   }
 
-  saveAll(data) {
-    this.setState({num: parseInt(data.value)})
-    this.state.valueConsumer(this.state.num)
+  saveAll = (n) => {
+    const num = n > this.state.min ? n : this.state.min
+    this.setState({num})
+    this.state.valueConsumer(num)
   }
 
   render() {
     return (<div>
       <Input
         type="number"
-        labelPosition="right"
-        className="ui labeled input"
+        labelPosition={this.state.helpers && "right"}
         value={this.state.num}
-        onChange={this.handleChange.bind(this)}
-      >
+        onChange={this.handleChange}>
         {this.state.helpers &&
-        <Button className="label" onClick={this.handleMinusClick.bind(this)}>-</Button>}
+        <Button className="label" onClick={this.handleMinusClick}>-</Button>}
         <input className="number-input" style={{textAlign: "center"}} />
         {this.state.helpers &&
-        <Button className="label" onClick={this.handlePlusClick.bind(this)}>+</Button>}
+        <Button className="label" onClick={this.handlePlusClick}>+</Button>}
       </Input>
     </div>)
   }
