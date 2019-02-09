@@ -5,11 +5,15 @@ import { Label } from "semantic-ui-react"
 
 function MatchLink (props) {
   const matchName = props.comp_level + props.number
-  return <Label title={props.title}><Link to={`${props.url}/${matchName}`}>{matchName}</Link></Label>
+  return (
+    <div>
+      <Label title={props.title}><Link to={`${matchName}`}>{matchName}</Link></Label>
+      <br/>
+    </div>
+  )
 }
 
 MatchLink.propTypes = {
-  url: propTypes.string,
   comp_level: propTypes.string,
   number: propTypes.number
 }
