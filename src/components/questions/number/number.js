@@ -21,6 +21,13 @@ class Number extends React.Component {
     valueConsumer: propTypes.func,
   }
 
+  static defaultProps = {
+    min: 0,
+    num: 0,
+    helpers: false,
+    valueConsumer: () => null
+  }
+
   handleMinusClick = e => {
       this.saveAll(this.state.num - 1)
   }
