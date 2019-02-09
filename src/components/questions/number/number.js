@@ -24,8 +24,7 @@ class Number extends React.Component {
   static defaultProps = {
     min: 0,
     num: 0,
-    helpers: false,
-    valueConsumer: () => null
+    helpers: false
   }
 
   handleMinusClick = e => {
