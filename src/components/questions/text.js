@@ -19,14 +19,14 @@ class Text extends React.Component {
     this.saveAll(data)
   }
 
-  saveAll(data) {
+  saveAll = data => {
     this.setState({text: data})
-    this.state.valueConsumer(this.state.text)
+    this.state.valueConsumer(data)
   }
 
   render() {
     return (
-      <Input onChange={this.handleChange().bind(this)} />
+      <Input onChange={this.handleChange} />
     )
   }
 }
