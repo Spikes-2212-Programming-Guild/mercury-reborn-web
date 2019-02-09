@@ -7,8 +7,7 @@ function MatchLink (props) {
   const matchName = props.comp_level + props.number
   return (
     <div>
-      <Label title={props.title}><Link to={`${matchName}`}>{matchName}</Link></Label>
-      <br/>
+      <Label size={"huge"} title={props.title}><Link to={`matches/${matchName}`}>{matchName}</Link></Label>
     </div>
   )
 }
