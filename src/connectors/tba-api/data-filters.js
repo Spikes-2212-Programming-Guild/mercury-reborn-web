@@ -18,8 +18,8 @@ export function filterScoutingMenuProperties(matches) {
 
 export function sortMatchesByCompLevel(matches) {
   return matches.sort((a, b) => {
-    a = compLevelOrder[a]
-    b = compLevelOrder[b]
+    a = compLevelOrder[a.comp_level]
+    b = compLevelOrder[b.comp_level]
     if (a > b) return 1;
     if (a < b) return -1;
     return 0
