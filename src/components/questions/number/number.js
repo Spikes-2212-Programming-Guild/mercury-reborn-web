@@ -38,7 +38,7 @@ class Number extends React.Component {
     }
   }
 
-  saveAll = (n) => {
+  saveAll = n => {
     const num = n > this.props.min ? n : this.props.min
     this.setState({num})
     this.props.valueConsumer(num)
