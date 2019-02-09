@@ -17,11 +17,17 @@ export function filterScoutingMenuProperties(matches) {
 }
 
 export function sortMatchesByCompLevel(matches) {
-  return matches.sort((a, b) => {
-    a = compLevelOrder[a.comp_level]
-    b = compLevelOrder[b.comp_level]
-    if (a > b) return 1;
-    if (a < b) return -1;
-    return 0
-  })
+  const result = []
+  const match_tree = {
+    qm: [], qf: [], sf: [], f: []
+  }
+
+  for (const match of matches) {
+    match_tree[match.comp_level].push(match)
+  }
+
+  for (const comp_level in match_tree) {
+    result.push(...match_tree[comp_level].sort((a, b) => parseInt(a.number) - parseInt(b.number)))
+  }
+  return result
 }
