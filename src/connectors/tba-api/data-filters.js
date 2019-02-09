@@ -1,3 +1,5 @@
+import * as _ from "lodash"
+
 const compLevelOrder = {
   qm: 0,
   qf: 1,
@@ -9,6 +11,7 @@ export function filterScoutingMenuProperties(matches) {
   return matches.map(match => {
     return {
       number: match.match_number,
+      set_number: match.set_number,
       blue: match.alliances.blue.team_keys,
       red: match.alliances.red.team_keys,
       comp_level: match.comp_level
@@ -17,17 +20,16 @@ export function filterScoutingMenuProperties(matches) {
 }
 
 export function sortMatchesByCompLevel(matches) {
-  const result = []
-  const match_tree = {
-    qm: [], qf: [], sf: [], f: []
-  }
-
-  for (const match of matches) {
-    match_tree[match.comp_level].push(match)
-  }
-
-  for (const comp_level in match_tree) {
-    result.push(...match_tree[comp_level].sort((a, b) => parseInt(a.number) - parseInt(b.number)))
-  }
-  return result
+  return _.chain(matches)
+    .groupBy(match => compLevelOrder[match.comp_level])
+    .map(matches_list =>
+      _.chain(matches_list)
+        .groupBy("set_number")
+        .map(matches_by_set => _.sortBy(matches_by_set, by_set => by_set.number))
+        .toArray()
+        .flatten().
+        value())
+    .toArray()
+    .flatten()
+    .value()
 }
