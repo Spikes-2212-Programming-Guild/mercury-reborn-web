@@ -6,8 +6,7 @@ class Enum extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      options: this.props.options,
-      valueConsumer: this.props.valueConsumer
+      selected: ""
     }
   }
 
@@ -18,12 +17,13 @@ class Enum extends React.Component {
 
   saveAll = data => {
     this.setState({selected: data})
-    this.state.valueConsumer(this.state.num)
+    this.props.valueConsumer(this.state.num)
   }
 
   render() {
     return (<Button.Group>
-      {this.state.options.map(opt => <Button active={this.state.selected === opt} onClick={() => {this.saveAll(opt)}}>{opt}</Button>)}
+this
+      {this.props.options.map(opt => <Button active={this.state.selected === opt} onClick={() => {this.saveAll(opt)}}>{opt}</Button>)}
     </Button.Group>)
   }
 }

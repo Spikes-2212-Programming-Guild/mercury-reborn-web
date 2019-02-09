@@ -7,10 +7,7 @@ class Number extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      min: this.props.min,
-      num: this.props.min,
-      helpers: this.props.helpers,
-      valueConsumer: this.props.valueConsumer,
+      num: this.props.min
     }
   }
 
@@ -18,7 +15,7 @@ class Number extends React.Component {
     min: propTypes.number,
     num: propTypes.number,
     helpers: propTypes.bool,
-    valueConsumer: propTypes.func,
+    valueConsumer: propTypes.func
   }
 
   static defaultProps = {
@@ -42,22 +39,22 @@ class Number extends React.Component {
   }
 
   saveAll = (n) => {
-    const num = n > this.state.min ? n : this.state.min
+    const num = n > this.props.min ? n : this.props.min
     this.setState({num})
-    this.state.valueConsumer(num)
+    this.props.valueConsumer(num)
   }
 
   render() {
     return (<div>
       <Input
         type="number"
-        labelPosition={this.state.helpers && "right"}
+        labelPosition={this.props.helpers && "right"}
         value={this.state.num}
         onChange={this.handleChange}>
-        {this.state.helpers &&
+        {this.props.helpers &&
         <Button className="label" onClick={this.handleMinusClick}>-</Button>}
         <input className="number-input" style={{textAlign: "center"}} />
-        {this.state.helpers &&
+        {this.props.helpers &&
         <Button className="label" onClick={this.handlePlusClick}>+</Button>}
       </Input>
     </div>)

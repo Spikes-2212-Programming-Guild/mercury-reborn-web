@@ -6,8 +6,7 @@ class Text extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      text: "",
-      valueConsumer: this.props.valueConsumer
+      text: ""
     }
   }
 
@@ -21,7 +20,7 @@ class Text extends React.Component {
 
   saveAll = data => {
     this.setState({text: data})
-    this.state.valueConsumer(data)
+    this.props.valueConsumer(data)
   }
 
   render() {
