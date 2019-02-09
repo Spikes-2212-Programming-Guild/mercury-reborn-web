@@ -6,7 +6,7 @@ class ScoutingMenuContainer extends Container {
   constructor () {
     super()
     this.state = {
-      matches: null
+      matches: []
     }
   }
 
@@ -15,7 +15,7 @@ class ScoutingMenuContainer extends Container {
    */
   fetchMatches() {
     fetchMatchesForScoutingMenu().then(matches => {
-      if (!this.state.matches) {
+      if (this.state.matches.length === 0) {
         return this.setState({matches})
       }
     })
