@@ -16,18 +16,14 @@ class Enum extends React.Component {
     valueConsumer: propTypes.func
   }
 
-  handleClick(e, opt) {
-    this.saveAll(opt)
-  }
-
-  saveAll(data) {
+  saveAll = data => {
     this.setState({selected: data})
     this.state.valueConsumer(this.state.num)
   }
 
   render() {
     return (<Button.Group>
-      {this.state.options.map(opt => <Button active={this.state.selected === opt} onClick={e => this.handleClick(e, opt)}>{opt}</Button>)}
+      {this.state.options.map(opt => <Button active={this.state.selected === opt} onClick={() => {this.saveAll(opt)}}>{opt}</Button>)}
     </Button.Group>)
   }
 }
