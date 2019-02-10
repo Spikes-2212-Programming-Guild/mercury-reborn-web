@@ -1,13 +1,13 @@
 import React from "react"
 import QuestionPage from "./QuestionPage"
-import FormContainer from "../containers/form-container"
+import ScoutingFormContainer from "../containers/scouting-form-container"
 import {Provider} from "unstated"
 import {fetchScoutingForm} from "../connectors/mercury-api-connector";
 
 class ScoutingForm extends React.Component {
   constructor(props) {
     super(props)
-    this.container = new FormContainer()
+    this.container = new ScoutingFormContainer()
 
     this.state = {
       form: {}
