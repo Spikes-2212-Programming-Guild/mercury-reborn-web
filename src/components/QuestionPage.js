@@ -17,10 +17,6 @@ const QuestionRegistry = {
 class QuestionPage extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      questions: this.props.questions,
-      set: this.props.set
-    }
   }
 
   static propTypes = {
@@ -32,10 +28,10 @@ class QuestionPage extends React.Component {
     return (
       <div>
         <Form>
-          {this.state.questions.map((question, index) => (
+          {this.props.questions.map((question, index) => (
             <div>
               <Label>{question.name}</Label>
-              <div>{QuestionRegistry[question.type](question, index, answer => this.set(answer, question.name))}</div>
+              <div>{QuestionRegistry[question.type](question, index, answer => this.props.set(answer, question.name))}</div>
             </div>
           ))}
         </Form>

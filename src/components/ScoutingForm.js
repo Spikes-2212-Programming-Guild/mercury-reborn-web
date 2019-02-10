@@ -25,7 +25,11 @@ class ScoutingForm extends React.Component {
     return (
       <Provider inject={[this.container]}>
         {
-          _.map(this.state.form, question => <QuestionPage questions={question}/>)
+          _.map(this.state.form, (questions, section) => (
+            <QuestionPage
+              questions={questions}
+              set={(value, questionName) => this.container.set(section, questionName, value)}/>
+          ))
         }
       </Provider>
     )
