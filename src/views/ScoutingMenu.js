@@ -3,7 +3,8 @@ import {Subscribe, Provider} from "unstated"
 import {MatchList} from "../components/match-list"
 import {Route} from "react-router-dom"
 import ScoutingMenuContainer from "../containers/scouting-menu-container"
-import Index from "../components/scouting-menu/match/index"
+import Match from "../components/scouting-menu/match"
+import ScoutingForm from "../components/ScoutingForm"
 
 
 function MatchesMenu(props) {
@@ -29,7 +30,8 @@ class ScoutingMenu extends React.Component {
     return (
       <Provider inject={[this.container]}>
         <Route exact path={`${this.props.match.path}/matches`} component={MatchesMenu}/>
-        <Route path={`${this.props.match.path}/matches/:name`} component={Index}/>
+        <Route path={`${this.props.match.path}/matches/:name`} component={Match}/>
+        <Route path={`${this.props.match.path}/matches/scout/:name/:team/`} component={ScoutingForm}/>
       </Provider>
     )
   }
