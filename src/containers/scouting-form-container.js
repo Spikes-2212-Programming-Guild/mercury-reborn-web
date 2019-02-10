@@ -11,13 +11,6 @@ class ScoutingFormContainer extends Container {
   initialize(form) {
     this.setState({form: {}})
     const newForm = {}
-    Object.keys(form).map(section => {
-      newForm[section] = {}
-      form[section].map(question => {
-        newForm[section][question.name] = ""
-      })
-    })
-
     for (const section in form) {
       newForm[section] = {}
       for (const question of form[section]) {
