@@ -1,5 +1,6 @@
 import {Container} from "unstated"
 import { fetchMatchesForScoutingMenu } from "../connectors/tba-api/connector"
+import * as _ from "lodash"
 
 class ScoutingMenuContainer extends Container {
 
@@ -23,11 +24,11 @@ class ScoutingMenuContainer extends Container {
 
   /**
    * finds the match with the given name
-   * @param matchName {string} the name of the target match
+   * @param name {string} the name of the target match
    * @returns {*} the match
    */
-  getMatch(matchName) {
-    return this.state.matches.filter(match => (match.comp_level + match.number) === matchName)[0]
+  getMatch(name) {
+    return _.find(this.state.matches, match => match.name === name)
   }
 
 }
