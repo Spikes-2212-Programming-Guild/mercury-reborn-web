@@ -8,7 +8,7 @@ function MatchList (props) {
     <List vertical compact borderless fluid>
       {props.matches.map((match, index) => (
         <List.Item>
-          <MatchLink {...match} id={index}/>
+          <MatchLink {...match} key={index}/>
         </List.Item>
       ))}
     </List>
