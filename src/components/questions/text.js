@@ -1,5 +1,6 @@
 import React from "react"
 import {Input} from "semantic-ui-react"
+import propTypes from "prop-types"
 
 class Text extends React.Component {
   constructor(props) {
@@ -9,9 +10,22 @@ class Text extends React.Component {
     }
   }
 
+  static propTypes = {
+    valueConsumer: propTypes.func
+  }
+
+  handleChange = (e, data) => {
+    this.saveAll(data)
+  }
+
+  saveAll = data => {
+    this.setState({text: data})
+    this.props.valueConsumer(data)
+  }
+
   render() {
     return (
-      <Input onChange={(e, data) => this.setState({text: data.value.toString()})} />
+      <Input onChange={this.handleChange} />
     )
   }
 }

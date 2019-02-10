@@ -6,21 +6,24 @@ class Enum extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      options: this.props.options,
+      selected: ""
     }
   }
 
   static propTypes = {
-    options: propTypes.array
+    options: propTypes.array,
+    valueConsumer: propTypes.func
   }
 
-  handleClick(e, opt) {
-    this.setState({selected: opt})
+  saveAll = data => {
+    this.setState({selected: data})
+    this.props.valueConsumer(this.state.num)
   }
 
   render() {
     return (<Button.Group>
-      {this.state.options.map(opt => <Button active={this.state.selected === opt} onClick={e => this.handleClick(e, opt)}>{opt}</Button>)}
+this
+      {this.props.options.map(opt => <Button active={this.state.selected === opt} onClick={() => {this.saveAll(opt)}}>{opt}</Button>)}
     </Button.Group>)
   }
 }

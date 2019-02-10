@@ -7,47 +7,55 @@ class Number extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      min: this.props.min,
-      num: this.props.min,
-      helpers: this.props.helpers,
+      num: this.props.min
     }
   }
 
   static propTypes = {
     min: propTypes.number,
     num: propTypes.number,
-    helpers: propTypes.bool
+    helpers: propTypes.bool,
+    valueConsumer: propTypes.func
   }
 
-  handleMinusClick (e) {
-    if(this.state.num > this.state.min)
-      this.setState({num: this.state.num - 1})
+  static defaultProps = {
+    min: 0,
+    num: 0,
+    helpers: false
   }
 
-  handlePlusClick (e) {
-    this.setState({num: this.state.num + 1})
+  handleMinusClick = e => {
+      this.saveAll(this.state.num - 1)
   }
 
-  handleChange(e, data) {
+  handlePlusClick = e => {
+    this.saveAll(parseInt(this.state.num) + 1)
+  }
+
+  handleChange = (e, data) => {
     if(data.value) {
-      this.setState({num: parseInt(data.value)})
+      this.saveAll(parseInt(data.value))
     }
+  }
+
+  saveAll = n => {
+    const num = n > this.props.min ? n : this.props.min
+    this.setState({num})
+    this.props.valueConsumer(num)
   }
 
   render() {
     return (<div>
       <Input
         type="number"
-        labelPosition="right"
-        className="ui labeled input"
+        labelPosition={this.props.helpers && "right"}
         value={this.state.num}
-        onChange={this.handleChange.bind(this)}
-      >
-        {this.state.helpers &&
-        <Button className="label" onClick={this.handleMinusClick.bind(this)}>-</Button>}
+        onChange={this.handleChange}>
+        {this.props.helpers &&
+        <Button className="label" onClick={this.handleMinusClick}>-</Button>}
         <input className="number-input" style={{textAlign: "center"}} />
-        {this.state.helpers &&
-        <Button className="label" onClick={this.handlePlusClick.bind(this)}>+</Button>}
+        {this.props.helpers &&
+        <Button className="label" onClick={this.handlePlusClick}>+</Button>}
       </Input>
     </div>)
   }
