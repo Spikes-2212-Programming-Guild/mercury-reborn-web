@@ -18,6 +18,13 @@ class ScoutingFormContainer extends Container {
       })
     })
 
+    for (const section in form) {
+      newForm[section] = {}
+      for (const question of form[section]) {
+        newForm[section][question.name] = ""
+      }
+    }
+
     this.setState({form: newForm})
   }
 
