@@ -1,6 +1,6 @@
 import {Container} from "unstated"
 
-class FormContainer extends Container {
+class ScoutingFormContainer extends Container {
   constructor() {
     super()
     this.state = {
@@ -28,4 +28,4 @@ class FormContainer extends Container {
   }
 }
 
-export default FormContainer
+export default ScoutingFormContainer
