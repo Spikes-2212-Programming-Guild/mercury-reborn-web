@@ -2,7 +2,8 @@ import React from "react"
 import QuestionPage from "./QuestionPage"
 import ScoutingFormContainer from "../containers/scouting-form-container"
 import {Provider} from "unstated"
-import {fetchScoutingForm} from "../connectors/mercury-api-connector";
+import {fetchScoutingForm} from "../connectors/mercury-api-connector"
+import * as _ from "lodash"
 
 class ScoutingForm extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class ScoutingForm extends React.Component {
     }
 
     fetchScoutingForm().then(form => {
+      console.log(form)
       this.container.initialize(form)
       this.setState({form})
     })
@@ -22,13 +24,9 @@ class ScoutingForm extends React.Component {
   render() {
     return (
       <Provider inject={[this.container]}>
-        <Subscriber>
-          {Object.keys(fetchScoutingForm()).map(section => (
-            <QuestionPage
-              questions={section.questions}
-              set={(answer, question) => this.container.set(section.name, question.name, answer)}/>
-          ))}
-        </Subscriber>
+        {
+          _.map(this.state.form, question => <QuestionPage questions={question}/>)
+        }
       </Provider>
     )
   }
