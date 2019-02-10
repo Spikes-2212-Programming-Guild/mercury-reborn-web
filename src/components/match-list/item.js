@@ -4,17 +4,16 @@ import {Link} from "react-router-dom"
 import { Label } from "semantic-ui-react"
 
 function MatchLink (props) {
-  const matchName = props.comp_level + props.number
+  const {name} = props
   return (
     <div>
-      <Label size={"huge"} title={props.title}><Link to={`matches/${matchName}`}>{matchName}</Link></Label>
+      <Label size={"huge"} title={props.title}><Link to={`matches/${name}`}>{name}</Link></Label>
     </div>
   )
 }
 
 MatchLink.propTypes = {
-  comp_level: propTypes.string,
-  number: propTypes.number
+  name: propTypes.string,
 }
 
 export default MatchLink
