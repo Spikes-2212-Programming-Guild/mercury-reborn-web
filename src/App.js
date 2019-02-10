@@ -1,35 +1,26 @@
 import React from "react"
-import LoginView from "./views/LoginView"
 import Homepage from "./views/Homepage"
-import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom"
+import { BrowserRouter, Route, Switch } from "react-router-dom"
+import {Provider} from "unstated"
+import ScoutingMenu from "./views/ScoutingMenu"
+import {initializeConnection} from "./connectors/tba-api/connector"
 
 class App extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
-    this.state = {
-      key: localStorage.getItem("key") || null
-    }
-    this.updateKey = this.updateKey.bind(this)
-  }
 
-  updateKey(key) {
-    this.setState({key})
+    initializeConnection()
   }
 
   render () {
-    return <BrowserRouter>
-      <Switch>
-        <Route path="/" exact render={
-          () => {
-            if(this.state.key) {
-              return <Homepage />
-            } else {
-              return <LoginView updateKey={this.updateKey} />
-            }
-          }
-        } />
-      </Switch>
-    </BrowserRouter>
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route path="/scouting-form" component={ScoutingMenu}/>
+          <Route exact path="/" component={Homepage}/>
+        </Switch>
+      </BrowserRouter>
+    )
   }
 }
 
