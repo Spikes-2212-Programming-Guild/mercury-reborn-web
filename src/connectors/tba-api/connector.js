@@ -7,8 +7,7 @@ const tbaAddress = "https://www.thebluealliance.com/api/v3"
 
 
 export async function initializeConnection() {
-  const tbaKey = await mercuryAPI.fetchEventKey()
-  axios.defaults.headers.common["X-TBA-Auth-Key"] = tbaKey
+  axios.defaults.headers.common["X-TBA-Auth-Key"] = await mercuryAPI.fetchTBAKey()
 }
 
 export async function checkStatus() {
@@ -16,21 +15,14 @@ export async function checkStatus() {
   return statusResponse.status
 }
 
-async function fetchMatchesForEvent(eventKey, pipeline) {
-  let result = (await axios.get(`${tbaAddress}/event/${eventKey}/matches/simple`)).data
-
-  if (pipeline && pipeline !== []) {
-    pipeline.map(fn => {result = fn(result)})
-    return result
-  }
-  return result
+async function fetchMatchesForEvent(eventKey) {
+  return (await axios.get(`${tbaAddress}/event/${eventKey}/matches/simple`)).data
 }
 
-async function fetchMatchesForCurrentEvent(pipeline) {
+export async function fetchMatchesForScoutingMenu() {
   const eventKey = await mercuryAPI.fetchEventKey()
-  return await fetchMatchesForEvent(eventKey, pipeline)
-}
-
-export function fetchMatchesForScoutingMenu() {
-  return fetchMatchesForCurrentEvent([filterScoutingMenuProperties, sortMatchesByCompLevel])
+  let matches = await fetchMatchesForEvent(eventKey)
+  matches = filterScoutingMenuProperties(matches)
+  matches = sortMatchesByCompLevel(matches)
+  return matches
 }
