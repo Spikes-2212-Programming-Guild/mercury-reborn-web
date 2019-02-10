@@ -8,10 +8,10 @@ import {Form, Label} from "semantic-ui-react"
 
 
 const QuestionRegistry = {
-  "number": (props, key) => (<Number {...props} key={key}/>),
-  "enum": (props, key) => (<Enum {...props} key={key}/>),
-  "text": (props, key) => (<Text {...props} key={key}/>),
-  "boolean": (props, key) => (<Boolean {...props} key={key}/>)
+  "number": (props, key, valueConsumer) => (<Number {...props} valueConsumer={valueConsumer} key={key}/>),
+  "enum": (props, key, valueConsumer) => (<Enum {...props} valueConsumer={valueConsumer}  key={key}/>),
+  "text": (props, key, valueConsumer) => (<Text {...props} valueConsumer={valueConsumer}  key={key}/>),
+  "boolean": (props, key, valueConsumer) => (<Boolean {...props} valueConsumer={valueConsumer}  key={key}/>)
 }
 
 class QuestionPage extends React.Component {
@@ -29,13 +29,18 @@ class QuestionPage extends React.Component {
   }
 
   render() {
-    return (<div>
-      <Form>
-        {this.state.questions.map((question, index) => (<div><Label>{question.name}</Label>
-          <div>{QuestionRegistry[question.type](question, index, answer => this.set(answer, question.name))}</div>
-        </div>))}
-      </Form>
-    </div>)
+    return (
+      <div>
+        <Form>
+          {this.state.questions.map((question, index) => (
+            <div>
+              <Label>{question.name}</Label>
+              <div>{QuestionRegistry[question.type](question, index, answer => this.set(answer, question.name))}</div>
+            </div>
+          ))}
+        </Form>
+      </div>
+    )
   }
 }
 
