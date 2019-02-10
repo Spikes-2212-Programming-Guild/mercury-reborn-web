@@ -14,7 +14,8 @@ export function filterScoutingMenuProperties(matches) {
       set_number: match.set_number,
       blue: match.alliances.blue.team_keys,
       red: match.alliances.red.team_keys,
-      comp_level: match.comp_level
+      comp_level: match.comp_level,
+      name: match.comp_level + match.number + "m" + match.set_number
     }
   })
 }
