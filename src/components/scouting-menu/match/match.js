@@ -1,10 +1,15 @@
 import React from "react"
-import {Label, Grid, Button, Menu} from "semantic-ui-react"
+import {Grid, Button} from "semantic-ui-react"
 import {Subscribe} from "unstated"
 import ScoutingMenuContainer from "../../../containers/scouting-menu-container"
 import "./style.css"
 
-function Index(props) {
+function scoutTeam(matchName, team) {
+  const newPath = `/${window.location.pathname.split("/")[1]}/matches/scout/${matchName}/${team}`
+  window.location.pathname = newPath
+}
+
+function Match(props) {
   const {match} = props
   const {name}  = match.params
   return (
@@ -12,7 +17,7 @@ function Index(props) {
       {container => {
         const matchData = container.getMatch(name)
         if (matchData) {
-          const {blue, red} = container.getMatch(name)
+          const {blue, red} = matchData
 
           const joined = []
           for (let i = 0; i < blue.length; i++) {
@@ -23,12 +28,24 @@ function Index(props) {
               <Grid centered padded columns={2}>
                 <Grid.Column>
                   <Button.Group color={"blue"} inverted vertical fluid >
-                    {blue.map(team => <Button class_name="team_button">{team}</Button>)}
+                    {blue.map(team => (
+                      <Button
+                        class_name="team_button"
+                        onClick={() => scoutTeam(name, team)}>
+                        {team}
+                      </Button>
+                    ))}
                   </Button.Group>
                 </Grid.Column>
                 <Grid.Column>
                   <Button.Group color={"red"} inverted vertical fluid >
-                    {red.map(team => <Button class_name="team_button">{team}</Button>)}
+                    {red.map(team => (
+                      <Button
+                        class_name="team_button"
+                        onClick={() => scoutTeam(name, team)}>
+                        {team}
+                      </Button>
+                    ))}
                   </Button.Group>
                 </Grid.Column>
               </Grid>
@@ -41,4 +58,4 @@ function Index(props) {
   )
 }
 
-export default Index
+export default Match
