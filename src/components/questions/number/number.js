@@ -24,12 +24,12 @@ class Number extends React.Component {
     helpers: false
   }
 
-  handleMinusClick = e => {
-      this.saveAll(this.state.num - 1)
+  handleMinusClick = () => {
+    this.saveAll(this.state.num - 1)
   }
 
-  handlePlusClick = e => {
-    this.saveAll(parseInt(this.state.num) + 1)
+  handlePlusClick = () => {
+    this.saveAll(this.state.num + 1)
   }
 
   handleChange = (e, data) => {
@@ -39,25 +39,28 @@ class Number extends React.Component {
   }
 
   saveAll = n => {
+    n = n ? n : 0
     const num = n > this.props.min ? n : this.props.min
     this.setState({num})
     this.props.valueConsumer(num)
   }
 
   render() {
-    return (<div>
-      <Input
-        type="number"
-        labelPosition={this.props.helpers && "right"}
-        value={this.state.num}
-        onChange={this.handleChange}>
-        {this.props.helpers &&
-        <Button className="label" onClick={this.handleMinusClick}>-</Button>}
-        <input className="number-input" style={{textAlign: "center"}} />
-        {this.props.helpers &&
-        <Button className="label" onClick={this.handlePlusClick}>+</Button>}
-      </Input>
-    </div>)
+    return (
+      <div>
+        <Input
+          type="number"
+          labelPosition={this.props.helpers && "right"}
+          value={this.state.num}
+          onChange={this.handleChange}>
+          {this.props.helpers &&
+          <Button className="label" onClick={this.handleMinusClick}>-</Button>}
+          <input className="number-input" style={{textAlign: "center"}} />
+          {this.props.helpers &&
+          <Button className="label" onClick={this.handlePlusClick}>+</Button>}
+        </Input>
+      </div>
+    )
   }
 }
 
