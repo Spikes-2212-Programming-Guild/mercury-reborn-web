@@ -3,7 +3,7 @@ import {Subscribe, Provider} from "unstated"
 import {MatchList} from "../components/match-list"
 import {Route} from "react-router-dom"
 import ScoutingMenuContainer from "../containers/scouting-menu-container"
-import Match from "../components/scouting-menu/match"
+import Match from "../components/scouting-menu/match/match"
 import ScoutingForm from "../components/ScoutingForm"
 
 
