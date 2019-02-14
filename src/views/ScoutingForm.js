@@ -1,5 +1,5 @@
 import React from "react"
-import QuestionPage from "./QuestionPage"
+import QuestionPage from "../components/QuestionPage"
 import ScoutingFormContainer from "../containers/scouting-form-container"
 import {Provider} from "unstated"
 import {fetchScoutingForm} from "../connectors/mercury-api-connector"
