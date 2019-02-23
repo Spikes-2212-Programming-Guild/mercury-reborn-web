@@ -1,10 +1,13 @@
 import {Container} from "unstated"
+import {submitMatch} from "../connectors/mercury-api-connector"
 
 class ScoutingFormContainer extends Container {
   constructor() {
     super()
     this.state = {
-      form: {}
+      form: {},
+      matchName: null,
+      teamNumber: null
     }
   }
 
@@ -25,6 +28,11 @@ class ScoutingFormContainer extends Container {
     const form = this.state.form
     form[section][question] = answer
     this.setState({form})
+  }
+
+  submit() {
+    const {teamNumber, form} = this.state
+    submitMatch(teamNumber, form)
   }
 }
 
