@@ -38,7 +38,7 @@ class ScoutingForm extends React.Component {
                   questions={questions}
                   key={section}
                   title={section}
-                  set={(value, questionName) => this.container.set(section, questionName, value)}/>
+                  set={(questionName, answer) => this.container.set(section, questionName, answer)}/>
               ))
             }
 

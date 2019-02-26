@@ -20,7 +20,7 @@ class QuestionPage extends React.Component {
 
   static propTypes = {
     questions: propTypes.array,
-    set: propTypes.func
+    consumer: propTypes.func
   }
 
   render () {
@@ -30,7 +30,7 @@ class QuestionPage extends React.Component {
         {this.props.questions.map((question, index) => (
           <Form.Field key={index}>
             <Header as="h5">{question.name}</Header>
-            {QuestionRegistry[question.type](question, index, answer => this.props.set(answer, question.name))}
+            {QuestionRegistry[question.type](question, index, answer => this.props.consumer(question.name, answer))}
           </Form.Field>
         ))}
       </div>
