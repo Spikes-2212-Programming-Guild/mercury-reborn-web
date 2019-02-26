@@ -5,6 +5,7 @@ import {Provider} from "unstated"
 import {fetchScoutingForm} from "../connectors/mercury-api-connector"
 import * as _ from "lodash"
 import {Form, Header, Container, Grid} from "semantic-ui-react"
+import * as configManager from "../util/config-manager"
 
 class ScoutingForm extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class ScoutingForm extends React.Component {
       name, teamNumber: team
     }
 
-    fetchScoutingForm().then(form => {
+    configManager.getScoutingForm().then(form => {
       console.log(form)
       this.container.initialize(form, this.state.teamNumber, this.state.name)
       this.setState({form})
