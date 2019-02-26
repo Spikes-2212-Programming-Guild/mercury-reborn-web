@@ -15,12 +15,12 @@ class ScoutingForm extends React.Component {
 
     this.state = {
       form: {},
-      name, team
+      name, teamNumber: team
     }
 
     fetchScoutingForm().then(form => {
       console.log(form)
-      this.container.initialize(form)
+      this.container.initialize(form, this.state.teamNumber, this.state.name)
       this.setState({form})
     })
   }
@@ -41,6 +41,8 @@ class ScoutingForm extends React.Component {
                   set={(value, questionName) => this.container.set(section, questionName, value)}/>
               ))
             }
+
+            <Form.Button onClick={() => this.container.submit()}>Submit</Form.Button>
           </Form>
         </Provider>
       </div>
