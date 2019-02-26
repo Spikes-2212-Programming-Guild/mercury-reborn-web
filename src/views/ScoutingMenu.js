@@ -5,6 +5,7 @@ import {Route} from "react-router-dom"
 import ScoutingMenuContainer from "../containers/scouting-menu-container"
 import Match from "../components/scouting-menu/match/match"
 import ScoutingForm from "./ScoutingForm"
+import * as tbaApi from "../connectors/tba-api/connector"
 
 
 function MatchesMenu(props) {
@@ -23,7 +24,7 @@ class ScoutingMenu extends React.Component {
   constructor(props) {
     super(props)
     this.container = new ScoutingMenuContainer()
-    this.container.fetchMatches()
+    tbaApi.fetchMatchesForScoutingMenu().then(matches => this.container.setMatches(matches))
   }
 
   render() {
