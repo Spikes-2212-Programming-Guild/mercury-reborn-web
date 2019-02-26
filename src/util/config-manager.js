@@ -8,7 +8,7 @@ const entries = {
 
 }
 
-async function getForm () {
+async function getScoutingForm () {
   let form = JSON.parse(localStorage.getItem(entries.scoutingForm))
   if (!form || form === "") {
     form = await fetchScoutingForm()
@@ -42,7 +42,7 @@ function reset() {
 }
 
 export {
-  getForm,
+  getScoutingForm,
   getTBAKey,
   getEventKey,
   reset,
