@@ -31,7 +31,7 @@ class ScoutingFormContainer extends Container {
 
   submit() {
     const {teamNumber, form} = this.state
-    submitMatch(teamNumber, form)
+    return submitMatch(teamNumber, form)
   }
 }
 
