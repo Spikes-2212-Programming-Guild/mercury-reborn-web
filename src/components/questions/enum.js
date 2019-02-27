@@ -1,9 +1,9 @@
 import React from "react"
 import propTypes from "prop-types"
-import {Button} from "semantic-ui-react"
+import { Button } from "semantic-ui-react"
 
 class Enum extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       selected: ""
@@ -15,16 +15,22 @@ class Enum extends React.Component {
     valueConsumer: propTypes.func
   }
 
-  saveAll = data => {
-    this.setState({selected: data})
-    this.props.valueConsumer(this.state.num)
+  saveAll = option => {
+    this.setState({selected: option})
+    this.props.valueConsumer(option)
   }
 
-  render() {
-    return (<Button.Group>
-this
-      {this.props.options.map(opt => <Button active={this.state.selected === opt} onClick={() => {this.saveAll(opt)}}>{opt}</Button>)}
-    </Button.Group>)
+  render () {
+    return (
+      <Button.Group>
+        {this.props.options.map(option => (
+          <Button
+            active={this.state.selected === option}
+            onClick={() => this.saveAll(option)}>{option}</Button>
+        ))
+        }
+      </Button.Group>
+    )
   }
 }
 

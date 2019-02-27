@@ -1,6 +1,6 @@
 import React from "react"
 import propTypes from "prop-types"
-import {Button, Input} from "semantic-ui-react"
+import {Button, Label} from "semantic-ui-react"
 import "./style.css"
 
 class Number extends React.Component {
@@ -24,12 +24,12 @@ class Number extends React.Component {
     helpers: false
   }
 
-  handleMinusClick = e => {
-      this.saveAll(this.state.num - 1)
+  handleMinusClick = () => {
+    this.saveAll(this.state.num - 1)
   }
 
-  handlePlusClick = e => {
-    this.saveAll(parseInt(this.state.num) + 1)
+  handlePlusClick = () => {
+    this.saveAll(this.state.num + 1)
   }
 
   handleChange = (e, data) => {
@@ -39,25 +39,21 @@ class Number extends React.Component {
   }
 
   saveAll = n => {
+    n = n ? n : 0
     const num = n > this.props.min ? n : this.props.min
     this.setState({num})
     this.props.valueConsumer(num)
   }
 
   render() {
-    return (<div>
-      <Input
-        type="number"
-        labelPosition={this.props.helpers && "right"}
-        value={this.state.num}
-        onChange={this.handleChange}>
-        {this.props.helpers &&
-        <Button className="label" onClick={this.handleMinusClick}>-</Button>}
-        <input className="number-input" style={{textAlign: "center"}} />
-        {this.props.helpers &&
-        <Button className="label" onClick={this.handlePlusClick}>+</Button>}
-      </Input>
-    </div>)
+
+    return (
+      <Button.Group>
+        {this.props.helpers ? <Button onClick={this.handleMinusClick}>-</Button> : ""}
+        <Button disabled color={"red"} inverted className="input_button">{this.state.num}</Button>
+        {this.props.helpers ? <Button onClick={this.handlePlusClick}>+</Button> : ""}
+      </Button.Group>
+    )
   }
 }
 

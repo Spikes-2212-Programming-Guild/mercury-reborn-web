@@ -12,14 +12,12 @@ class ScoutingMenuContainer extends Container {
   }
 
   /**
-   * fetches all the matches from the tba api
+   * saves the given matches to state
    */
-  fetchMatches() {
-    fetchMatchesForScoutingMenu().then(matches => {
-      if (this.state.matches.length === 0) {
-        return this.setState({matches})
-      }
-    })
+  setMatches(matches) {
+    if (this.state.matches.length === 0) {
+      return this.setState({matches})
+    }
   }
 
   /**

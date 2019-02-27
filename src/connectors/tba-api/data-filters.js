@@ -26,7 +26,7 @@ export function sortMatchesByCompLevel(matches) {
     .map(matches_list =>
       _.chain(matches_list)
         .groupBy("set_number")
-        .map(matches_by_set => _.sortBy(matches_by_set, by_set => by_set.number))
+        .map(matches_by_set => _.sortBy(matches_by_set, "number"))
         .toArray()
         .flatten().
         value())

@@ -42,3 +42,8 @@ code {
 * {
     margin: 0.5em 0px;
 }
+
+.scoutingForm {
+    text-align: center !important;
+    justify-content: center;
+}
