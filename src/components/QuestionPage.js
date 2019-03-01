@@ -4,13 +4,17 @@ import Enum from "./questions/enum"
 import Boolean from "./questions/boolean"
 import Number from "./questions/number/"
 import Text from "./questions/text"
-import {Form, Header} from "semantic-ui-react"
+import { Form, Header } from "semantic-ui-react"
 
 const QuestionRegistry = {
-  "number": (props, key, valueConsumer) => (<Number {...props} valueConsumer={valueConsumer} key={key}/>),
-  "enum": (props, key, valueConsumer) => (<Enum {...props} valueConsumer={valueConsumer} key={key}/>),
-  "text": (props, key, valueConsumer) => (<Text {...props} valueConsumer={valueConsumer} key={key}/>),
-  "boolean": (props, key, valueConsumer) => (<Boolean {...props} valueConsumer={valueConsumer} key={key}/>)
+  "number": (props, key, consumer, supplier) => (
+    <Number {...props} consumer={consumer} supplier={supplier} key={key}/>),
+  "enum": (props, key, consumer, supplier) => (
+    <Enum {...props} consumer={consumer} supplier={supplier} key={key}/>),
+  "text": (props, key, consumer, supplier) => (
+    <Text {...props} valueConsumer={consumer} supplier={supplier} key={key}/>),
+  "boolean": (props, key, consumer, supplier) => (
+    <Boolean {...props} consumer={consumer} supplier={supplier} key={key}/>)
 }
 
 class QuestionPage extends React.Component {
@@ -20,7 +24,8 @@ class QuestionPage extends React.Component {
 
   static propTypes = {
     questions: propTypes.array,
-    consumer: propTypes.func
+    consumer: propTypes.func,
+    supplier: propTypes.func
   }
 
   render () {
@@ -30,7 +35,9 @@ class QuestionPage extends React.Component {
         {this.props.questions.map((question, index) => (
           <Form.Field key={index}>
             <Header as="h5">{question.name}</Header>
-            {QuestionRegistry[question.type](question, index, answer => this.props.consumer(question.name, answer))}
+            {QuestionRegistry[question.type](question, index,
+              answer => this.props.consumer(question.name, answer),
+              () => this.props.supplier(question.name))}
           </Form.Field>
         ))}
       </div>

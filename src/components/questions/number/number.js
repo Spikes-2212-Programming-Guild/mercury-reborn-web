@@ -15,7 +15,8 @@ class Number extends React.Component {
     min: propTypes.number,
     num: propTypes.number,
     helpers: propTypes.bool,
-    valueConsumer: propTypes.func
+    consumer: propTypes.func,
+    supplier: propTypes.func
   }
 
   static defaultProps = {
@@ -25,24 +26,18 @@ class Number extends React.Component {
   }
 
   handleMinusClick = () => {
-    this.saveAll(this.state.num - 1)
+    this.saveAll(parseInt(this.props.supplier()) - 1)
   }
 
   handlePlusClick = () => {
-    this.saveAll(this.state.num + 1)
-  }
-
-  handleChange = (e, data) => {
-    if(data.value) {
-      this.saveAll(parseInt(data.value))
-    }
+    this.saveAll(parseInt(this.props.supplier()) + 1)
   }
 
   saveAll = n => {
     n = n ? n : 0
     const num = n > this.props.min ? n : this.props.min
-    this.setState({num})
-    this.props.valueConsumer(num)
+    this.props.consumer(num)
+    this.forceUpdate()
   }
 
   render() {
@@ -50,7 +45,7 @@ class Number extends React.Component {
     return (
       <Button.Group>
         {this.props.helpers ? <Button onClick={this.handleMinusClick}>-</Button> : ""}
-        <Button disabled color={"red"} inverted className="input_button">{this.state.num}</Button>
+        <Button disabled color={"red"} inverted className="input_button">{this.props.supplier()}</Button>
         {this.props.helpers ? <Button onClick={this.handlePlusClick}>+</Button> : ""}
       </Button.Group>
     )

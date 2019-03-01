@@ -39,11 +39,15 @@ class ScoutingForm extends React.Component {
                   questions={questions}
                   key={section}
                   title={section}
-                  consumer={(questionName, answer) => this.container.set(section, questionName, answer)}/>
+                  consumer={(questionName, answer) => this.container.set(section, questionName, answer)}
+                  supplier={(questionName) => this.container.get(section, questionName)}/>
               ))
             }
 
-            <Form.Button onClick={() => this.container.submit()}>Submit</Form.Button>
+            <Form.Button onClick={() => {
+              this.container.submit()
+                .then(() => window.location.reload())
+            }}>Submit</Form.Button>
           </Form>
         </Provider>
       </div>

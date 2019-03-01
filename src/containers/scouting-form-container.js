@@ -29,6 +29,13 @@ class ScoutingFormContainer extends Container {
     this.setState({form})
   }
 
+  get(section, question) {
+    if (this.state.form[section]) {
+      return this.state.form[section][question]
+    }
+    return ""
+  }
+
   submit() {
     const {teamNumber, form} = this.state
     return submitMatch(teamNumber, form)
