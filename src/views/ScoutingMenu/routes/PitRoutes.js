@@ -2,6 +2,7 @@ import { Route } from "react-router-dom"
 import TeamsMenu from ".."
 import * as configManager from "../../../util/config-manager"
 import React from "react"
+import ScoutingForm from "../../../components/ScoutingForm"
 
 export default function PitRoutes (props) {
   return (

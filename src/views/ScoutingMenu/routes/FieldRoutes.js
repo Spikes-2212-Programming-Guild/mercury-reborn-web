@@ -1,8 +1,9 @@
 import { Route } from "react-router-dom"
-import MatchesMenu from ".."
+import MatchesMenu from "../MatchesMenu"
 import * as configManager from "../../../util/config-manager"
 import { submitFieldForm } from "../../../connectors/mercury-api-connector"
 import ScoutingForm from "../../../components/ScoutingForm"
+import Match from "../../../components/scouting-menu/match/match"
 import React from "react"
 
 export default function fieldRoutes (props) {
