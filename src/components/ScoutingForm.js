@@ -35,7 +35,7 @@ class ScoutingForm extends React.Component {
       <div className="scoutingForm segment centered">
         <Header as="h1">{this.state.team}</Header>
         <Header dividing as="h2">{this.props.title}</Header>
-        <Provider inject={[this.container]}>
+        <Provider inject={[this.state.container]}>
           <Form>
             {
               _.map(this.state.form, (questions, section) => (
