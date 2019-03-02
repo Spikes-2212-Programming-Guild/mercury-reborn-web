@@ -22,7 +22,7 @@ class Number extends React.Component {
   static defaultProps = {
     min: 0,
     num: 0,
-    helpers: false
+    helpers: true
   }
 
   handleMinusClick = () => {
@@ -44,9 +44,9 @@ class Number extends React.Component {
 
     return (
       <Button.Group>
-        {this.props.helpers ? <Button onClick={this.handleMinusClick}>-</Button> : ""}
-        <Button disabled color={"red"} inverted className="input_button">{this.props.supplier()}</Button>
-        {this.props.helpers ? <Button onClick={this.handlePlusClick}>+</Button> : ""}
+        {this.props.helpers ? <Button color="grey" onClick={this.handleMinusClick}>-</Button> : ""}
+        <Button disabled color={"red"} className="input_button">{this.props.supplier()}</Button>
+        {this.props.helpers ? <Button color="grey" onClick={this.handlePlusClick}>+</Button> : ""}
       </Button.Group>
     )
   }
