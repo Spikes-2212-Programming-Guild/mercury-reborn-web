@@ -17,13 +17,13 @@ export default function fieldRoutes (props) {
         path={`${props.match.path}/field/matches/:name`}
         component={() => <Match parentURL={`${props.match.path}/field/matches/scout/`}/>}/>
       <Route
-        path={`${props.match.path}/field/matches/scout/:name/:team/`}
+        path={`${props.match.path}/field/matches/scout/:name/:team_id/`}
         component={(props) => (
           <ScoutingForm
             {...props}
             formPromise={configManager.getFieldForm()}
-            formConsumer={submitFieldForm}
-            title={`Scouting - ${props.match.params.team.replace("frc", "")}`}/>
+            formConsumer={form => submitFieldForm(form)}
+            title={`Scouting - ${props.match.params.team_id.replace("frc", "")}`}/>
         )}/>
     </div>
   )

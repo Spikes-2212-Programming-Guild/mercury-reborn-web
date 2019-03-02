@@ -16,14 +16,11 @@ class ScoutingForm extends React.Component {
 
   constructor(props) {
     super(props)
-    this.container = new ScoutingFormContainer()
-
-
     const formParams = this.props.match.params
 
     this.state = {
       form: {},
-      container: new ScoutingFormContainer(props.formConsumer)
+      container: new ScoutingFormContainer(this.props.formConsumer)
     }
 
     props.formPromise.then(form => {
@@ -38,7 +35,7 @@ class ScoutingForm extends React.Component {
       <div className="scoutingForm segment centered">
         <Header as="h1">{this.state.team}</Header>
         <Header dividing as="h2">{this.props.title}</Header>
-        <Provider inject={[this.container]}>
+        <Provider inject={[this.state.container]}>
           <Form>
             {
               _.map(this.state.form, (questions, section) => (
@@ -52,7 +49,7 @@ class ScoutingForm extends React.Component {
             }
 
             <Form.Button onClick={() => {
-              this.container.submit()
+              this.state.container.submit()
                 .then(() => window.location.reload())
             }}>Submit</Form.Button>
           </Form>

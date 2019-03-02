@@ -1,7 +1,7 @@
 import FieldRoutes from "./FieldRoutes"
 import PitRoutes from "./PitRoutes"
-import ViewerRoutes from "./ViewerRoutes"
+import SpectatorRoutes from "./SpectatorRoutes"
 
 export {
-  PitRoutes, ViewerRoutes, FieldRoutes
+  PitRoutes, SpectatorRoutes, FieldRoutes
 }
