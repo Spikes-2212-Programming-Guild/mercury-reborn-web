@@ -2,15 +2,20 @@ import React from "react"
 import QuestionPage from "../components/QuestionPage"
 import ScoutingFormContainer from "../containers/scouting-form-container"
 import {Provider} from "unstated"
-import {fetchScoutingForm} from "../connectors/mercury-api-connector"
 import * as _ from "lodash"
-import {Form, Header, Container, Grid} from "semantic-ui-react"
-import * as configManager from "../util/config-manager"
+import {Form, Header} from "semantic-ui-react"
+import propTypes from "prop-types"
 
 class ScoutingForm extends React.Component {
+
+  static propTypes = {
+    formPromise: propTypes.object
+  }
+
   constructor(props) {
     super(props)
     this.container = new ScoutingFormContainer()
+
 
     const {name, team} = this.props.match.params
 
@@ -20,7 +25,7 @@ class ScoutingForm extends React.Component {
       container: new ScoutingFormContainer()
     }
 
-    configManager.getScoutingForm().then(form => {
+    props.formPromise.then(form => {
       console.log(form)
       this.state.container.initialize(form, this.state.teamNumber, this.state.name)
       this.setState({form})
