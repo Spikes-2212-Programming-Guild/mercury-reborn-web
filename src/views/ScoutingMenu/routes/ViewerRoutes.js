@@ -22,7 +22,7 @@ export default function ViewerRoutes (props) {
       <Route
         exact
         path={`${props.match.path}/viewer/matches`}
-        component={() => <MatchesMenu parentURL={`${this.props.match.path}/viewer`}/>}/>
+        component={() => <MatchesMenu parentURL={`${props.match.path}/viewer`}/>}/>
     </div>
   )
 }
