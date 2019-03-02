@@ -37,13 +37,9 @@ async function getEventKey () {
   return eventKey
 }
 
-function reset() {
-  _.map(entries, (value) => localStorage.setItem(value, ""))
-}
 
 export {
   getScoutingForm,
   getTBAKey,
-  getEventKey,
-  reset,
+  getEventKey
 }
