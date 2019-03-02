@@ -21,7 +21,7 @@ async function fetchMatchesForEvent(eventKey) {
 }
 
 async function fetchTeamsForEvent(eventKey) {
-  return await axios.get(`${tbaAddress}/event/${eventKey}/teams`)
+  return (await axios.get(`${tbaAddress}/event/${eventKey}/teams`)).data
 }
 
 export async function fetchMatchesForScoutingMenu() {

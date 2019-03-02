@@ -36,5 +36,5 @@ export function sortMatchesByCompLevel(matches) {
 }
 
 export function filterTeamProperties(teams) {
-  return _.map(teams, (team) => team.key)
+  return teams.map(team => team.key)
 }
