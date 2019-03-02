@@ -10,7 +10,7 @@ class ScoutingFormContainer extends Container {
     }
   }
 
-  initialize(form, teamNumber, matchName) {
+  initialize(form, matchParams) {
     const newForm = {}
     for (const section in form) {
       newForm[section] = {}
@@ -18,7 +18,10 @@ class ScoutingFormContainer extends Container {
         newForm[section][question.name] = ""
       }
     }
-    newForm.matchName = matchName
+    for (const param in matchParams) {
+      newForm[param] = matchParams[param]
+    }
+
     this.setState({form: newForm}).then(() => console.log(this.state))
   }
 

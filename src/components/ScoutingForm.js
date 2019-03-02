@@ -17,17 +17,16 @@ class ScoutingForm extends React.Component {
     this.container = new ScoutingFormContainer()
 
 
-    const {name, team} = this.props.match.params
+    const formParams = this.props.match.params
 
     this.state = {
       form: {},
-      name, teamNumber: team,
       container: new ScoutingFormContainer()
     }
 
     props.formPromise.then(form => {
       console.log(form)
-      this.state.container.initialize(form, this.state.teamNumber, this.state.name)
+      this.state.container.initialize(form, formParams)
       this.setState({form})
     })
   }
