@@ -4,7 +4,6 @@ import { MatchList } from "../components/match-list"
 import { Route } from "react-router-dom"
 import ScoutingMenuContainer from "../containers/scouting-menu-container"
 import Match from "../components/scouting-menu/match/match"
-import FormViewer from "./ViewerForm"
 import ScoutingForm from "../components/ScoutingForm"
 import * as tbaApi from "../connectors/tba-api/connector"
 import * as configManager from "../util/config-manager"
@@ -62,8 +61,8 @@ class ScoutingMenu extends React.Component {
         <Route exact path={`${this.props.match.path}/pit/teams`} component={(props) => <TeamsMenu {...props}/>}/>
         <Route
           exact
-          path={`${this.props.match.path}/viewer/matches`}
-          component={() => <MatchesMenu parentURL={`${this.props.match.path}/viewer`}/>}/>
+          path={`${this.props.match.path}/spectator/matches`}
+          component={() => <MatchesMenu parentURL={`${this.props.match.path}/spectator`}/>}/>
         <Route
           exact
           path={`${this.props.match.path}/pit/:team`}
@@ -75,11 +74,11 @@ class ScoutingMenu extends React.Component {
           )}/>
         <Route
           exact
-          path={`${this.props.match.path}/viewer/matches/:match`}
+          path={`${this.props.match.path}/spectator/matches/:match`}
           component={props => (
             <ScoutingForm
               {...props}
-              formPromise={configManager.getViewerForm()}
+              formPromise={configManager.getSpectatorForm()}
               title={`Match - ${props.match.params.match}`}/>
           )}/>
       </Provider>

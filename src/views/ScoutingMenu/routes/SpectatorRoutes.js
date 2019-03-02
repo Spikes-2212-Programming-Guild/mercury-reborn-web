@@ -3,26 +3,26 @@ import * as configManager from "../../../util/config-manager"
 import { Route } from "react-router-dom"
 import React from "react"
 import MatchesMenu from "../../../components/scouting-menu/MatchesMenu"
-import {submitViewerForm} from "../../../connectors/mercury-api-connector"
+import {submitSpectatorForm} from "../../../connectors/mercury-api-connector"
 
-export default function ViewerRoutes (props) {
+export default function SpectatorRoutes (props) {
   return (
     <div>
       <Route
         exact
-        path={`${props.match.path}/viewer/matches/:match`}
+        path={`${props.match.path}/spectator/matches/:match`}
         component={props => (
           <ScoutingForm
             {...props}
-            formConsumer={submitViewerForm}
-            formPromise={configManager.getViewerForm()}
+            formConsumer={submitSpectatorForm}
+            formPromise={configManager.getSpectatorForm()}
             title={`Match - ${props.match.params.match}`}/>
         )}/>
 
       <Route
         exact
-        path={`${props.match.path}/viewer/matches`}
-        component={() => <MatchesMenu parentURL={`${props.match.path}/viewer`}/>}/>
+        path={`${props.match.path}/spectator/matches`}
+        component={() => <MatchesMenu parentURL={`${props.match.path}/spectator`}/>}/>
     </div>
   )
 }

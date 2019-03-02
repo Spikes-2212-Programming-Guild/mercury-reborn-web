@@ -13,7 +13,8 @@ module.exports = {
     sourceType: 'module',
   },
   globals: {
-    React: true
+    React: true,
+    localStorage: true
   },
 
   ecmaFeatures: {

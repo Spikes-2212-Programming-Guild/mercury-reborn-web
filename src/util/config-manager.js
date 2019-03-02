@@ -1,10 +1,9 @@
-import * as _ from "lodash"
-import { fetchEventKey, fetchPitForm, fetchViewerFrom, fetchScoutingForm, fetchTBAKey } from "../connectors/mercury-api-connector"
+import { fetchEventKey, fetchPitForm, fetchSpectatorForm, fetchScoutingForm, fetchTBAKey } from "../connectors/mercury-api-connector"
 
 const entries = {
   fieldForm: "field-form",
   pitForm: "pit-form",
-  viewerForm: "viewer-form",
+  spectatorForm: "spectator-form",
   eventKey: "event-id",
   tbaKey: "tba-key",
 
@@ -28,11 +27,11 @@ async function getPitForm() {
   return form
 }
 
-async function getViewerForm() {
-  let form = JSON.parse(localStorage.getItem(entries.viewerForm))
+async function getSpectatorForm() {
+  let form = JSON.parse(localStorage.getItem(entries.spectatorForm))
   if (!form) {
-    form = await fetchViewerFrom()
-    localStorage.setItem(entries.viewerForm, JSON.stringify(form))
+    form = await fetchSpectatorForm()
+    localStorage.setItem(entries.spectatorForm, JSON.stringify(form))
   }
   return form
 }
@@ -61,7 +60,7 @@ async function getEventKey () {
 export {
   getFieldForm,
   getPitForm,
-  getViewerForm,
+  getSpectatorForm,
   getTBAKey,
   getEventKey
 }
