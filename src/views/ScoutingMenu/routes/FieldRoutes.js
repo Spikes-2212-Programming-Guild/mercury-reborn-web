@@ -12,10 +12,10 @@ export default function fieldRoutes (props) {
       <Route
         exact
         path={`${props.match.path}/field/matches`}
-        component={() => <MatchesMenu parentURL={`${this.props.match.path}/field`}/>}/>
+        component={() => <MatchesMenu parentURL={`${props.match.path}/field`}/>}/>
       <Route
         path={`${props.match.path}/field/matches/:name`}
-        component={() => <Match parentURL={`${this.props.match.path}/field/matches/scout/`}/>}/>
+        component={() => <Match parentURL={`${props.match.path}/field/matches/scout/`}/>}/>
       <Route
         path={`${props.match.path}/field/matches/scout/:name/:team/`}
         component={(props) => (
