@@ -1,29 +1,14 @@
 import React from "react"
+import { Label, Header } from "semantic-ui-react"
+import { Link } from "react-router-dom"
 
-import {Link} from "react-router-dom"
-import {Label, List} from "semantic-ui-react"
-import ResetConf from "./ResetConf"
-
-class Homepage extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Choose Your Scouting...</h1>
-        <List>
-          <List.Item>
-            <Label basic size={"massive"} horizontal><Link to={"/scouting/field/matches"} className="scouting">Scout Field</Link></Label>
-          </List.Item>
-          <List.Item>
-            <Label basic size={"massive"} horizontal><Link to={"/scouting/spectator/matches/"}>Scout Spectator</Link></Label>
-          </List.Item>
-          <List.Item>
-            <Label basic size={"massive"} horizontal><Link to={"/scouting/pit/teams"}>Scout Pits</Link></Label>
-          </List.Item>
-        </List>
-        <ResetConf />
-      </div>
-    )
-  }
+export default function Homepage (props) {
+  return (
+    <div>
+      <Header as={"h1"}>Mercury</Header>
+      <Label size={"massive"} horizontal basic>
+        <Link to={"scouting/"}>Scout</Link>
+      </Label>
+    </div>
+  )
 }
-
-export default Homepage

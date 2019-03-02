@@ -1,8 +1,8 @@
 import React from "react"
-import Homepage from "./views/Homepage"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import ScoutingMenu from "./views/ScoutingMenu"
 import {initializeConnection} from "./connectors/tba-api/connector"
+import Homepage from './views/Homepage'
 
 class App extends React.Component {
   constructor (props) {
