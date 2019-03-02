@@ -2,14 +2,17 @@ import React from "react"
 import {withRouter} from "react-router-dom"
 import propTypes from "prop-types"
 import {List} from "semantic-ui-react"
-import * as _ from "lodash"
 
 function TeamsList(props) {
   return (
     <List vertical selection relaxed divided size={"huge"} fluid>
-      {props.teams.map((team, index) => <List.Item key={index}>
-        {team}
-      </List.Item>)}
+      {props.teams.sort((a, b) => (
+        parseInt(a.replace("frc", "")) - parseInt(b.replace("frc", ""))))
+        .map((team, index) => (
+          <List.Item key={index} onClick={() => props.history.push(team)}>
+            {team}
+          </List.Item>
+        ))}
     </List>
   )
 }
