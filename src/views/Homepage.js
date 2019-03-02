@@ -2,6 +2,7 @@ import React from "react"
 
 import {Link} from "react-router-dom"
 import {Label, List} from "semantic-ui-react"
+import ResetConf from "./ResetConf"
 
 class Homepage extends React.Component {
   render() {
@@ -19,6 +20,7 @@ class Homepage extends React.Component {
             <Label size={"massive"} horizontal><Link to={"/scouting-form/teams-pit"}>Scout Pits</Link></Label>
           </List.Item>
         </List>
+        <ResetConf />
       </div>
     )
   }
