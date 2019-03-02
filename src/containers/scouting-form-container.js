@@ -1,5 +1,4 @@
 import {Container} from "unstated"
-import {submitMatch} from "../connectors/mercury-api-connector"
 
 class ScoutingFormContainer extends Container {
   constructor(formConsumer) {
