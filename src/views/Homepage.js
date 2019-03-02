@@ -11,13 +11,13 @@ class Homepage extends React.Component {
         <h1>Homepage</h1>
         <List>
           <List.Item>
-            <Label size={"massive"} horizontal><Link to={"/scouting-form/field/matches"}>Scout Field</Link></Label>
+            <Label size={"massive"} horizontal><Link to={"/scouting/field/matches"}>Scout Field</Link></Label>
           </List.Item>
           <List.Item>
-            <Label size={"massive"} horizontal><Link to={"/scouting-form/viewer/matches/"}>Scout Viewer</Link></Label>
+            <Label size={"massive"} horizontal><Link to={"/scouting/viewer/matches/"}>Scout Viewer</Link></Label>
           </List.Item>
           <List.Item>
-            <Label size={"massive"} horizontal><Link to={"/scouting-form/pit/teams"}>Scout Pits</Link></Label>
+            <Label size={"massive"} horizontal><Link to={"/scouting/pit/teams"}>Scout Pits</Link></Label>
           </List.Item>
         </List>
         <ResetConf />
