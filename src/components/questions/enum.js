@@ -7,6 +7,10 @@ class Enum extends React.Component {
     super(props)
   }
 
+  static defaultProps = {
+    color: "black"
+  }
+
   render () {
     return (
       <Button.Group fluid>
