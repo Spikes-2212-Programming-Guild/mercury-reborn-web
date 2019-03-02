@@ -9,7 +9,8 @@ import propTypes from "prop-types"
 class ScoutingForm extends React.Component {
 
   static propTypes = {
-    formPromise: propTypes.object
+    formPromise: propTypes.object,
+    formConsumer: propTypes.func
   }
 
   constructor(props) {
@@ -21,7 +22,7 @@ class ScoutingForm extends React.Component {
 
     this.state = {
       form: {},
-      container: new ScoutingFormContainer()
+      container: new ScoutingFormContainer(props.formConsumer)
     }
 
     props.formPromise.then(form => {
