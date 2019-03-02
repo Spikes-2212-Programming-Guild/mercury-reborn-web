@@ -1,0 +1,23 @@
+div#root {
+		text-align: center;
+		padding: 2em;
+}
+
+body {
+	max-width: 800px;
+
+}
+
+a.conf-reset {
+	transition: color 0.2s ease;
+	align-items: flex-end;
+	color: #ddd;
+}
+a.conf-reset:hover {
+	color: #333;
+}
+
+div.label {
+	width: 100%;
+	margin-bottom: 0.5em !important;
+}

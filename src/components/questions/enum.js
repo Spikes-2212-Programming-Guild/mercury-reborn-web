@@ -9,17 +9,21 @@ class Enum extends React.Component {
 
   render () {
     return (
-      <Button.Group>
+      <Button.Group fluid>
         {this.props.options.map((option, index) => (
           <Button
+            basic={this.props.supplier() === option ? false : true}
             key={index}
-            color={(this.props.supplier() === option) ? "red" : "grey"}
+            color={(this.props.supplier() === option) ? this.props.color : "black"}
             onClick={() => {
               this.props.consumer(option)
               this.forceUpdate()
-            }}>{option}</Button>
+            }}>
+            {option}
+          </Button>
         ))}
-      </Button.Group>)
+      </Button.Group>
+    )
   }
 
 }

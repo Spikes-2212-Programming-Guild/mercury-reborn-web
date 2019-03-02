@@ -1,6 +1,6 @@
 import React from "react"
 import propTypes from "prop-types"
-import {Button, Label} from "semantic-ui-react"
+import {Button} from "semantic-ui-react"
 import "./style.css"
 
 class Number extends React.Component {
@@ -43,10 +43,10 @@ class Number extends React.Component {
   render() {
 
     return (
-      <Button.Group>
-        {this.props.helpers ? <Button color="grey" onClick={this.handleMinusClick}>-</Button> : ""}
-        <Button disabled color={"red"} className="input_button">{this.props.supplier()}</Button>
-        {this.props.helpers ? <Button color="grey" onClick={this.handlePlusClick}>+</Button> : ""}
+      <Button.Group fluid>
+        {this.props.helpers ? <Button className="number-button" basic color="black" onClick={this.handleMinusClick}>-</Button> : ""}
+        <Button basic color="black" className="input_button">{this.props.supplier()}</Button>
+        {this.props.helpers ? <Button className="number-button" basic color="black" onClick={this.handlePlusClick}>+</Button> : ""}
       </Button.Group>
     )
   }
