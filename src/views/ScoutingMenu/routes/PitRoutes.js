@@ -16,7 +16,7 @@ export default function PitRoutes (props) {
           <ScoutingForm
             {...props}
             formPromise={configManager.getPitForm()}
-            formConsumer={submitPitForm}
+            formConsumer={(form) => submitPitForm(form)}
             title={`Pit - ${props.match.params.team}`}/>
         )}/>
     </div>

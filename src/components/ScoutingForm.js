@@ -16,14 +16,11 @@ class ScoutingForm extends React.Component {
 
   constructor(props) {
     super(props)
-    this.container = new ScoutingFormContainer()
-
-
     const formParams = this.props.match.params
 
     this.state = {
       form: {},
-      container: new ScoutingFormContainer(props.formConsumer)
+      container: new ScoutingFormContainer(this.props.formConsumer)
     }
 
     props.formPromise.then(form => {
@@ -52,7 +49,7 @@ class ScoutingForm extends React.Component {
             }
 
             <Form.Button onClick={() => {
-              this.container.submit()
+              this.state.container.submit()
                 .then(() => window.location.reload())
             }}>Submit</Form.Button>
           </Form>

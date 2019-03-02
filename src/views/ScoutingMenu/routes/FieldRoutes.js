@@ -22,7 +22,7 @@ export default function fieldRoutes (props) {
           <ScoutingForm
             {...props}
             formPromise={configManager.getFieldForm()}
-            formConsumer={submitFieldForm}
+            formConsumer={form => submitFieldForm(form)}
             title={`Scouting - ${props.match.params.team.replace("frc", "")}`}/>
         )}/>
     </div>
