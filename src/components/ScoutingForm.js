@@ -9,7 +9,8 @@ import propTypes from "prop-types"
 class ScoutingForm extends React.Component {
 
   static propTypes = {
-    formPromise: propTypes.object
+    formPromise: propTypes.object,
+    title: propTypes.string,
   }
 
   constructor(props) {
@@ -35,7 +36,7 @@ class ScoutingForm extends React.Component {
     return (
       <div className="scoutingForm segment centered">
         <Header as="h1">{this.state.team}</Header>
-        <Header dividing as="h2">Scouting</Header>
+        <Header dividing as="h2">{this.props.title}</Header>
         <Provider inject={[this.container]}>
           <Form>
             {
