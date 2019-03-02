@@ -1,8 +1,9 @@
 import * as _ from "lodash"
-import { fetchEventKey, fetchScoutingForm, fetchTBAKey } from "../connectors/mercury-api-connector"
+import { fetchEventKey, fetchPitForm, fetchScoutingForm, fetchTBAKey } from "../connectors/mercury-api-connector"
 
 const entries = {
   scoutingForm: "form",
+  pitForm: "pit-form",
   eventKey: "event-id",
   tbaKey: "tba-key",
 
@@ -15,6 +16,14 @@ async function getScoutingForm () {
     localStorage.setItem(entries.scoutingForm, JSON.stringify(form))
   }
   return form
+}
+
+async function getPitForm() {
+  let form = JSON.parse(localStorage.getItem(entries.pitFrom))
+  if (!form) {
+    form = await fetchPitForm()
+    localStorage.setItem(entries.pitForm, JSON.stringify(form))
+  }
 }
 
 async function getTBAKey () {
@@ -40,6 +49,7 @@ async function getEventKey () {
 
 export {
   getScoutingForm,
+  getPitForm,
   getTBAKey,
   getEventKey
 }

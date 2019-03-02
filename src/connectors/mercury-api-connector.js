@@ -7,6 +7,7 @@ async function fetchConfigOption(option) {
 export const fetchTBAKey = () => fetchConfigOption("tba-key")
 export const fetchEventKey = () => fetchConfigOption("event-name")
 export const fetchScoutingForm = () => fetchConfigOption("form")
+export const fetchPitForm = () => fetchConfigOption("pit-form")
 
 
 export async function submitMatch (teamNumber, match) {

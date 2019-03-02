@@ -46,8 +46,9 @@ class ScoutingMenu extends React.Component {
       <Provider inject={[this.container]}>
         <Route exact path={`${this.props.match.path}/field/matches`} component={() => <MatchesMenu parentURL={`${this.props.match.path}/field`}/>}/>
         <Route path={`${this.props.match.path}/field/matches/:name`} component={() => <Match parentURL={`${this.props.match.path}/field/matches/scout/`}/>}/>
-        <Route path={`${this.props.match.path}/field/matches/scout/:name/:team/`} component={(props) => <ScoutingForm {...props} formPromise={configManager.getScoutingForm()}/>}/>
+        <Route path={`${this.props.match.path}/field/matches/scout/:name/:team/`} component={(props) => <ScoutingForm {...props} formPromise={configManager.getScoutingForm()} title="Scouting"/>}/>
         <Route exact path={`${this.props.match.path}/pit/teams`} component={(props) => <TeamsMenu {...props}/>}/>
+        <Route exact path={`${this.props.match.path}/pit/:team`} component={(props) => <ScoutingForm {...props} formPromise={configManager.getPitForm()} title="Pit Scouting"/>}/>
       </Provider>
     )
   }
