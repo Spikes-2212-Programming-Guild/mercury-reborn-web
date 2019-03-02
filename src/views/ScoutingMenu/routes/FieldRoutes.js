@@ -17,7 +17,7 @@ export default function fieldRoutes (props) {
         path={`${props.match.path}/field/matches/:name`}
         component={() => <Match parentURL={`${props.match.path}/field/matches/scout/`}/>}/>
       <Route
-        path={`${props.match.path}/field/matches/scout/:name/:team/`}
+        path={`${props.match.path}/field/matches/scout/:name/:team_id/`}
         component={(props) => (
           <ScoutingForm
             {...props}
