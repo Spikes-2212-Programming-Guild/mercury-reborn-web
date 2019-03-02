@@ -1,6 +1,6 @@
 import { Subscribe } from "unstated"
 import ScoutingMenuContainer from "../../containers/scouting-menu-container"
-import TeamsList from "../../views/ScoutingMenu"
+import TeamsList from "../teams-list"
 import React from "react"
 
 export default function TeamsMenu (props) {
