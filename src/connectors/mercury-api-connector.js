@@ -8,7 +8,7 @@ export const fetchTBAKey = () => fetchConfigOption("tba-key")
 export const fetchEventKey = () => fetchConfigOption("event-name")
 export const fetchScoutingForm = () => fetchConfigOption("field-form")
 export const fetchPitForm = () => fetchConfigOption("pit-form")
-export const fetchViewerFrom = () => fetchConfigOption("viewer-form")
+export const fetchSpectatorForm = () => fetchConfigOption("spectator-form")
 
 
 export async function submitFieldForm (match) {
@@ -19,6 +19,6 @@ export async function submitPitForm(form) {
   return await axios.post("/scouting/pit/team/submit", {form})
 }
 
-export async function submitViewerForm(match) {
-  return await axios.post("/scouting/viewer/match/submit", {match})
+export async function submitSpectatorForm(match) {
+  return await axios.post("/scouting/spectator/match/submit", {match})
 }

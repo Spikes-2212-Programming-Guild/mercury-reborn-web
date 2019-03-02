@@ -14,7 +14,7 @@ class Homepage extends React.Component {
             <Label basic size={"massive"} horizontal><Link to={"/scouting/field/matches"} className="scouting">Scout Field</Link></Label>
           </List.Item>
           <List.Item>
-            <Label basic size={"massive"} horizontal><Link to={"/scouting/viewer/matches/"}>Scout Viewer</Link></Label>
+            <Label basic size={"massive"} horizontal><Link to={"/scouting/spectator/matches/"}>Scout Spectator</Link></Label>
           </List.Item>
           <List.Item>
             <Label basic size={"massive"} horizontal><Link to={"/scouting/pit/teams"}>Scout Pits</Link></Label>
