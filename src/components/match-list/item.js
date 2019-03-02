@@ -7,7 +7,7 @@ function MatchLink (props) {
   const {name} = props
   return (
     <div>
-      <Label size={"huge"} title={props.title}><Link to={`matches/${name}`}>{name}</Link></Label>
+      <Label color="red" size={"huge"} title={props.title}><Link to={`matches/${name}`}>{name}</Link></Label>
     </div>
   )
 }

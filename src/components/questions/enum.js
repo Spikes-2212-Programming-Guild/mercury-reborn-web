@@ -2,13 +2,26 @@ import React from "react"
 import propTypes from "prop-types"
 import { Button } from "semantic-ui-react"
 
-function Enum (props) {
-  return (
-    <Button.Group>
-      {props.options.map(option => (
-        <Button active={props.supplier() === option} onClick={() => props.consumer(option)}>{option}</Button>
-      ))}
-    </Button.Group>)
+class Enum extends React.Component {
+  constructor (props) {
+    super(props)
+  }
+
+  render () {
+    return (
+      <Button.Group>
+        {this.props.options.map((option, index) => (
+          <Button
+            key={index}
+            color={(this.props.supplier() === option) ? "red" : "grey"}
+            onClick={() => {
+              this.props.consumer(option)
+              this.forceUpdate()
+            }}>{option}</Button>
+        ))}
+      </Button.Group>)
+  }
+
 }
 
 Enum.propTypes = {

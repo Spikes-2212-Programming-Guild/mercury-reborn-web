@@ -11,7 +11,6 @@ class ScoutingFormContainer extends Container {
   }
 
   initialize(form, teamNumber, matchName) {
-    this.setState({form: {}})
     const newForm = {}
     for (const section in form) {
       newForm[section] = {}
@@ -20,11 +19,11 @@ class ScoutingFormContainer extends Container {
       }
     }
     newForm.matchName = matchName
-    this.setState({form: newForm, teamNumber})
+    this.setState({form: newForm}).then(() => console.log(this.state))
   }
 
   set(section, question, answer) {
-    const form = this.state.form
+    const {form} = this.state
     form[section][question] = answer
     this.setState({form})
   }

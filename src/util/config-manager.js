@@ -10,7 +10,7 @@ const entries = {
 
 async function getScoutingForm () {
   let form = JSON.parse(localStorage.getItem(entries.scoutingForm))
-  if (!form || form === "") {
+  if (!form) {
     form = await fetchScoutingForm()
     localStorage.setItem(entries.scoutingForm, JSON.stringify(form))
   }

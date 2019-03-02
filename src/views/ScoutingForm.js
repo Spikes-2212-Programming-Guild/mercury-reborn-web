@@ -16,12 +16,13 @@ class ScoutingForm extends React.Component {
 
     this.state = {
       form: {},
-      name, teamNumber: team
+      name, teamNumber: team,
+      container: new ScoutingFormContainer()
     }
 
     configManager.getScoutingForm().then(form => {
       console.log(form)
-      this.container.initialize(form, this.state.teamNumber, this.state.name)
+      this.state.container.initialize(form, this.state.teamNumber, this.state.name)
       this.setState({form})
     })
   }
@@ -39,8 +40,8 @@ class ScoutingForm extends React.Component {
                   questions={questions}
                   key={section}
                   title={section}
-                  consumer={(questionName, answer) => this.container.set(section, questionName, answer)}
-                  supplier={(questionName) => this.container.get(section, questionName)}/>
+                  consumer={(questionName, answer) => this.state.container.set(section, questionName, answer)}
+                  supplier={(questionName) => this.state.container.get(section, questionName)}/>
               ))
             }
 
