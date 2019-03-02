@@ -35,6 +35,11 @@ export function sortMatchesByCompLevel(matches) {
     .value()
 }
 
+export function sortTeams(teams) {
+  return teams.sort((a, b) => (
+    parseInt(a.replace("frc", "")) - parseInt(b.replace("frc", ""))))
+}
+
 export function filterTeamProperties(teams) {
   return teams.map(team => team.key)
 }

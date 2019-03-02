@@ -10,6 +10,7 @@ class ScoutingForm extends React.Component {
 
   static propTypes = {
     formPromise: propTypes.object,
+    formConsumer: propTypes.func,
     title: propTypes.string,
   }
 
@@ -22,7 +23,7 @@ class ScoutingForm extends React.Component {
 
     this.state = {
       form: {},
-      container: new ScoutingFormContainer()
+      container: new ScoutingFormContainer(props.formConsumer)
     }
 
     props.formPromise.then(form => {
