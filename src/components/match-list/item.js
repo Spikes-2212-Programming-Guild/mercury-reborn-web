@@ -1,13 +1,18 @@
 import React from "react"
 import propTypes from "prop-types"
-import {Link} from "react-router-dom"
-import { Label } from "semantic-ui-react"
+import {withRouter} from "react-router-dom"
+import { Button, List } from "semantic-ui-react"
 
 function MatchLink (props) {
   const {name} = props
+
+  const redirect = () => {
+    props.history.push(`/${window.location.pathname.split("/")[1]}/matches/${name}`)
+  }
+
   return (
-    <div>
-      <Label color="red" size={"huge"} title={props.title}><Link to={`matches/${name}`}>{name}</Link></Label>
+    <div onClick={redirect}>
+      <List.Content color="red" size={"huge"} title={props.title}>{name}</List.Content>
     </div>
   )
 }
@@ -16,4 +21,4 @@ MatchLink.propTypes = {
   name: propTypes.string,
 }
 
-export default MatchLink
+export default withRouter(MatchLink)
