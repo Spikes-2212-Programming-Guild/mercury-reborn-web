@@ -12,7 +12,7 @@ const QuestionRegistry = {
   "enum": (props, key, consumer, supplier) => (
     <Enum {...props} consumer={consumer} supplier={supplier} key={key}/>),
   "text": (props, key, consumer, supplier) => (
-    <Text {...props} valueConsumer={consumer} supplier={supplier} key={key}/>),
+    <Text {...props} consumer={consumer} supplier={supplier} key={key}/>),
   "boolean": (props, key, consumer, supplier) => (
     <Boolean {...props} consumer={consumer} supplier={supplier} key={key}/>)
 }
