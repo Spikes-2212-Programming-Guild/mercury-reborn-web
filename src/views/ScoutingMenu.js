@@ -14,7 +14,7 @@ function MatchesMenu(props) {
     <Subscribe to={[ScoutingMenuContainer]}>
       {container => {
         console.log("matches")
-        return <MatchList matches={container.state.matches}/>
+        return <MatchList {...props} matches={container.state.matches}/>
       }}
     </Subscribe>
   )
@@ -31,9 +31,9 @@ class ScoutingMenu extends React.Component {
   render() {
     return (
       <Provider inject={[this.container]}>
-        <Route exact path={`${this.props.match.path}/matches-field`} component={MatchesMenu}/>
-        <Route path={`${this.props.match.path}/matches-field/:name`} component={Match}/>
-        <Route path={`${this.props.match.path}/matches-field/scout/:name/:team/`} component={ScoutingForm}/>
+        <Route exact path={`${this.props.match.path}/field/matches`} component={props => <MatchesMenu parentURL={`${this.props.match.path}/field`}/>}/>
+        <Route path={`${this.props.match.path}/field/matches/:name`} component={props => <Match parentURL={`${this.props.match.path}/field/matches/scout/`}/>}/>
+        <Route path={`${this.props.match.path}/field/matches/scout/:name/:team/`} component={ScoutingForm}/>
         <Route exact path={`${this.props.match.path}/form-viewer`} component={FormViewer}/>
       </Provider>
     )

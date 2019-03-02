@@ -34,3 +34,7 @@ export function sortMatchesByCompLevel(matches) {
     .flatten()
     .value()
 }
+
+export function filterTeamProperties(teams) {
+  return _.map(teams, (team) => team.key)
+}

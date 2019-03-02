@@ -10,7 +10,7 @@ class Homepage extends React.Component {
         <h1>Homepage</h1>
         <List>
           <List.Item>
-            <Label size={"massive"} horizontal><Link to={"/scouting-form/matches-field"}>Scout Field</Link></Label>
+            <Label size={"massive"} horizontal><Link to={"/scouting-form/field/matches"}>Scout Field</Link></Label>
           </List.Item>
           <List.Item>
             <Label size={"massive"} horizontal><Link to={"/scouting-form/form-viewer"}>Scout Viewer</Link></Label>
