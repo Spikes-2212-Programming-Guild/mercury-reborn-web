@@ -8,10 +8,10 @@ import {submitPitForm} from "../../../connectors/mercury-api-connector"
 export default function PitRoutes (props) {
   return (
     <div>
-      <Route exact path={`${props.match.path}/pit/teams`} component={(props) => <TeamsMenu {...props}/>}/>
+      <Route exact path={`${props.match.path}/pit/teams`}  component={(props) => <TeamsMenu {...props} parentURL={`${props.parentURL}/teams`}/>}/>
       <Route
         exact
-        path={`${props.match.path}/pit/scout/:team`}
+        path={`${props.match.path}/pit/teams/:team`}
         component={(props) => (
           <ScoutingForm
             {...props}
