@@ -5,19 +5,20 @@ class ScoutingFormContainer extends Container {
   constructor() {
     super()
     this.state = {
-      form: {},
-      teamNumber: null
+      form: {}
     }
   }
 
   initialize(form, matchParams) {
     const newForm = {}
+    // formats the questions to the form
     for (const section in form) {
       newForm[section] = {}
       for (const question of form[section]) {
         newForm[section][question.name] = ""
       }
     }
+    // formats the params to the form
     for (const param in matchParams) {
       newForm[param] = matchParams[param]
     }
