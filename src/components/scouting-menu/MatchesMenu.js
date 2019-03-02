@@ -1,6 +1,6 @@
 import { Subscribe } from "unstated"
 import ScoutingMenuContainer from "../../containers/scouting-menu-container"
-import { MatchList } from "../../components/match-list"
+import { MatchList } from "../match-list"
 import React from "react"
 
 export default function MatchesMenu (props) {

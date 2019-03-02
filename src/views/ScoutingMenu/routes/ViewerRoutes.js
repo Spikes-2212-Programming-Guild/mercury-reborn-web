@@ -2,7 +2,7 @@ import ScoutingForm from "../../../components/ScoutingForm"
 import * as configManager from "../../../util/config-manager"
 import { Route } from "react-router-dom"
 import React from "react"
-import MatchesMenu from "../../ScoutingMenu"
+import MatchesMenu from "../../../components/scouting-menu/MatchesMenu"
 
 export default function ViewerRoutes (props) {
   return (

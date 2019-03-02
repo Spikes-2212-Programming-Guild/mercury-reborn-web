@@ -1,9 +1,9 @@
 import { Subscribe } from "unstated"
 import ScoutingMenuContainer from "../../containers/scouting-menu-container"
-import TeamsList from "../ScoutingMenu"
+import TeamsList from "../../views/ScoutingMenu"
 import React from "react"
 
-function TeamsMenu (props) {
+export default function TeamsMenu (props) {
   return (
     <Subscribe to={[ScoutingMenuContainer]}>
       {container => {

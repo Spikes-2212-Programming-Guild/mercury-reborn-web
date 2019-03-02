@@ -1,5 +1,5 @@
 import { Route } from "react-router-dom"
-import TeamsMenu from ".."
+import TeamsMenu from "../../../components/scouting-menu/TeamsMenu"
 import * as configManager from "../../../util/config-manager"
 import React from "react"
 import ScoutingForm from "../../../components/ScoutingForm"
