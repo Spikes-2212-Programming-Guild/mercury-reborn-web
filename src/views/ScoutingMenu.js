@@ -5,7 +5,7 @@ import {Route} from "react-router-dom"
 import ScoutingMenuContainer from "../containers/scouting-menu-container"
 import Match from "../components/scouting-menu/match/match"
 import FormViewer from "./ViewerForm"
-import ScoutingForm from "./ScoutingForm"
+import ScoutingForm from "../components/ScoutingForm"
 import * as tbaApi from "../connectors/tba-api/connector"
 
 
