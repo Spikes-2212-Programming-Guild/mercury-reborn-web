@@ -4,6 +4,7 @@ import {MatchList} from "../components/match-list"
 import {Route} from "react-router-dom"
 import ScoutingMenuContainer from "../containers/scouting-menu-container"
 import Match from "../components/scouting-menu/match/match"
+import FormViewer from "./ViewerForm"
 import ScoutingForm from "./ScoutingForm"
 import * as tbaApi from "../connectors/tba-api/connector"
 
@@ -30,9 +31,10 @@ class ScoutingMenu extends React.Component {
   render() {
     return (
       <Provider inject={[this.container]}>
-        <Route exact path={`${this.props.match.path}/matches`} component={MatchesMenu}/>
-        <Route path={`${this.props.match.path}/matches/:name`} component={Match}/>
-        <Route path={`${this.props.match.path}/matches/scout/:name/:team/`} component={ScoutingForm}/>
+        <Route exact path={`${this.props.match.path}/matches-field`} component={MatchesMenu}/>
+        <Route path={`${this.props.match.path}/matches-field/:name`} component={Match}/>
+        <Route path={`${this.props.match.path}/matches-field/scout/:name/:team/`} component={ScoutingForm}/>
+        <Route exact path={`${this.props.match.path}/form-viewer`} component={FormViewer}/>
       </Provider>
     )
   }

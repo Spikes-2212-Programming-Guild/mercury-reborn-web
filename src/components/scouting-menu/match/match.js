@@ -13,7 +13,7 @@ class Match extends React.Component {
   }
 
   scoutTeam(matchName, team) {
-    const newPath = `/${window.location.pathname.split("/")[1]}/matches/scout/${matchName}/${team}`
+    const newPath = `/${window.location.pathname.split("/")[1]}/matches-field/scout/${matchName}/${team}`
     this.props.history.push(newPath)
   }
 
