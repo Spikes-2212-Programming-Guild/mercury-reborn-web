@@ -1,9 +1,9 @@
 import React from "react"
 import QuestionPage from "./QuestionPage"
 import ScoutingFormContainer from "../containers/scouting-form-container"
-import {Provider} from "unstated"
+import { Provider, Subscribe } from "unstated"
 import * as _ from "lodash"
-import {Form, Header} from "semantic-ui-react"
+import { Form, Header } from "semantic-ui-react"
 import propTypes from "prop-types"
 
 class ScoutingForm extends React.Component {
@@ -29,7 +29,13 @@ class ScoutingForm extends React.Component {
       this.setState({form})
     })
   }
+  async reload() {
+    const formParams = this.props.match.params
 
+    const form = await this.props.formPromise
+    await this.state.container.initialize(form, formParams)
+    return await this.setState({form})
+  }
   render() {
     return (
       <div className="scoutingForm segment centered">
@@ -50,7 +56,9 @@ class ScoutingForm extends React.Component {
 
             <Form.Button onClick={() => {
               this.state.container.submit()
-                .then(() => window.location.reload())
+                .then(() => {
+                  this.reload().then(()=>this.forceUpdate())
+                })
             }}>Submit</Form.Button>
           </Form>
         </Provider>
