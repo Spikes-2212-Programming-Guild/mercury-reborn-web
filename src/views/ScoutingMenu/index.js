@@ -16,9 +16,9 @@ export default class ScoutingMenu extends React.Component {
   render () {
     return (
       <Provider inject={[this.container]}>
-        <ViewerRoutes/>
-        <PitRoutes/>
-        <FieldRoutes/>
+        <ViewerRoutes {...this.props}/>
+        <PitRoutes {...this.props}/>
+        <FieldRoutes {...this.props}/>
       </Provider>
     )
   }
