@@ -7,8 +7,8 @@ function MatchList (props) {
   return (
     <List vertical selection relaxed divided size={"huge"} fluid>
       {props.matches.map((match, index) => (
-        <List.Item>
-          <MatchLink {...match} parentURL={props.parentURL} key={index}/>
+        <List.Item key={index}>
+          <MatchLink {...match} parentURL={props.parentURL}/>
         </List.Item>
       ))}
     </List>

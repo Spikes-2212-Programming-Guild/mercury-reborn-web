@@ -11,11 +11,12 @@ export default class MatchesContainer extends Container {
   }
 
   setMatches(matches) {
-    this.setState({matches})
+    return this.setState({matches}).then(() => console.log(this.state))
   }
 
   getMatch(name) {
-    return _.filter(this.state.matches, match => match.name === name)
+    console.log(this.state.matches)
+    return _.filter(this.state.matches, match => match.name === name)[0]
   }
 
 }

@@ -1,13 +1,13 @@
 import { Subscribe } from "unstated"
-import ScoutingMenuContainer from "../../containers/scouting-menu-container"
 import { MatchList } from "../match-list"
 import React from "react"
+import MatchesContainer from "../../containers/matches-container"
 
 export default function MatchesMenu (props) {
   return (
-    <Subscribe to={[ScoutingMenuContainer]}>
+    <Subscribe to={[MatchesContainer]}>
       {container => {
-        console.log("matches")
+        console.log(container.state)
         return <MatchList {...props} matches={container.state.matches}/>
       }}
     </Subscribe>

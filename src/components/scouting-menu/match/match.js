@@ -1,9 +1,9 @@
 import React from "react"
 import {Grid, Button} from "semantic-ui-react"
 import {Subscribe} from "unstated"
-import ScoutingMenuContainer from "../../../containers/scouting-menu-container"
 import {withRouter} from "react-router-dom"
 import "./style.css"
+import MatchesContainer from "../../../containers/matches-container"
 
 
 class Match extends React.Component {
@@ -22,7 +22,7 @@ class Match extends React.Component {
     const {match} = this.props
     const {name} = match.params
     return (
-      <Subscribe to={[ScoutingMenuContainer]}>
+      <Subscribe to={[MatchesContainer]}>
         {container => {
           const matchData = container.getMatch(name)
           if (matchData) {
