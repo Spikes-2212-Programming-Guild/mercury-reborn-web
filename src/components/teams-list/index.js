@@ -7,7 +7,7 @@ function TeamsList (props) {
   return (
     <List vertical selection relaxed divided size={"huge"} fluid>
       {props.teams.map((team, index) => (
-        <List.Item key={index} onClick={() => props.history.push(team)}>
+        <List.Item key={index} onClick={() => props.history.push(`${props.parentURL}/${team}`)}>
           {team}
         </List.Item>
       ))}
