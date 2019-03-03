@@ -1,6 +1,6 @@
 import React from "react"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-import ScoutingMenu from "./views/ScoutingMenu"
+import ScoutingMenu from "./views/scouting"
 import {initializeConnection} from "./connectors/tba-api/connector"
 import Homepage from './views/Homepage'
 
