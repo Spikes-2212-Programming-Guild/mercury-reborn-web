@@ -22,3 +22,15 @@ export async function submitPitForm(form) {
 export async function submitSpectatorForm(match) {
   return await axios.post("/scouting/spectator/match/submit", {match})
 }
+
+export async function fetchSavedFieldMatches() {
+  return (await axios.get("/tactics/field/match-names")).data
+}
+
+export async function fetchSavedPitScoutingTeams() {
+  return (await axios.get("/tactics/pit/team-ids")).data
+}
+
+export async function fetchSavedSpectatorMatches() {
+  return (await axios.get("/tactics/spectator/match-names"))
+}
