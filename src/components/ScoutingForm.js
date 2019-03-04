@@ -5,6 +5,7 @@ import { Provider, Subscribe } from "unstated"
 import * as _ from "lodash"
 import { Form, Header } from "semantic-ui-react"
 import propTypes from "prop-types"
+import {withRouter} from "react-router-dom"
 
 class ScoutingForm extends React.Component {
 
@@ -12,6 +13,7 @@ class ScoutingForm extends React.Component {
     formPromise: propTypes.object,
     formConsumer: propTypes.func,
     title: propTypes.string,
+    fallbackURL: propTypes.string
   }
 
   constructor(props) {
@@ -57,7 +59,9 @@ class ScoutingForm extends React.Component {
             <Form.Button onClick={() => {
               this.state.container.submit()
                 .then(() => {
-                  this.reload().then(()=>this.forceUpdate())
+                  this.reload().then(()=> {
+                    this.props.history.push(this.props.fallbackURL)
+                  })
                 })
             }}>Submit</Form.Button>
           </Form>
@@ -67,4 +71,4 @@ class ScoutingForm extends React.Component {
   }
 }
 
-export default ScoutingForm
+export default withRouter(ScoutingForm)

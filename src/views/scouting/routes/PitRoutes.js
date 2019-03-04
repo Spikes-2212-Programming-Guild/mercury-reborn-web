@@ -20,7 +20,8 @@ export default function PitRoutes (props) {
             {...props}
             formPromise={configManager.getPitForm()}
             formConsumer={(form) => submitPitForm(form)}
-            title={`Pit - ${props.match.params.team}`}/>
+            title={`Pit - ${props.match.params.team}`}
+            fallbackURL={`${props.match.path}/pit/teams`}/>
         )}/>
     </div>
   )
