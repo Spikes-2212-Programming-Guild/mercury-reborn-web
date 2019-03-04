@@ -1,26 +1,42 @@
 import React from "react"
-import {Table} from "semantic-ui-react"
+import { Table, Header } from "semantic-ui-react"
+import * as _ from "lodash"
 
 class SimpleTable extends React.Component {
-  render() {
-    const {Row, Cell, HeaderCell} = Table
+  render () {
+    const {Row, Cell, Header, HeaderCell} = Table
+    delete this.props.data["team_id"]
+    delete this.props.data["name"]
+    const {data} = this.props
     return (
-      <Table basic="very" celled collapsing>
-        <Table.Header>
-          <Row>
-            <HeaderCell>Key</HeaderCell>
-            <HeaderCell>Value</HeaderCell>
-          </Row>
-        </Table.Header>
-        <Table.Body>
-          {this.props.data.map((a, i) => (
-            <Row key={i}>
-              <Cell>{a[1]}</Cell>
-              <Cell>{a[0]}</Cell>
-            </Row>
-          ))}
-        </Table.Body>
-      </Table>
+      _.map(data, (questions, category) =>
+        (
+          <div>
+            <Header as={"h3"}>{category}</Header>
+            <Table columns={2} basic celled>
+              <Header>
+                <HeaderCell>Key</HeaderCell>
+                <HeaderCell>Value</HeaderCell>
+              </Header>
+
+              <Table.Body>
+                {
+                  _.map(questions, (value, key) => (
+                    <Row>
+                      <Cell>
+                        {key}
+                      </Cell>
+                      <Cell>
+                        {value}
+                      </Cell>
+                    </Row>
+                  ))
+                }
+              </Table.Body>
+            </Table>
+          </div>
+        )
+      )
     )
   }
 }
