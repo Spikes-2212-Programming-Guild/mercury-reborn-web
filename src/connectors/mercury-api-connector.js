@@ -32,5 +32,13 @@ export async function fetchSavedPitScoutingTeams() {
 }
 
 export async function fetchSavedSpectatorMatches() {
-  return (await axios.get("/tactics/spectator/match-names"))
+  return (await axios.get("/tactics/spectator/match-names")).data
+}
+
+export async function fetchFieldMatch(team_id, match_name) {
+  return (await axios.get(`/tactics/field/match/${team_id}/${match_name}`)).data
+}
+
+export async function fetchSpectatorMatch(match_name) {
+  return (await axios.get(`/tactics/spectator/match/${match_name}`)).data
 }
