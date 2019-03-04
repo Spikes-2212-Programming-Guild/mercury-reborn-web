@@ -22,7 +22,7 @@ export default class FieldMatchDataView extends React.Component {
       const {team_id, match_name} = this.props.match.params
       return (
         <div>
-          <Header as={"h1"}>{`Match ${match_name} For Team ${team_id}`}</Header>
+          <Header as={"h3"}>{`Match ${match_name} For Team ${team_id}`}</Header>
           <SimpleTable data={this.state.match}/>
         </div>
       )
