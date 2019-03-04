@@ -1,7 +1,7 @@
 import React from "react"
 import { FieldRoutes, PitRoutes, SpectatorRoutes } from "./routes"
 
-export class Tactics extends React.Component {
+export default class Tactics extends React.Component {
 
   constructor (props) {
     super(props)

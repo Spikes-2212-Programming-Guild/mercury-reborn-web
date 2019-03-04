@@ -7,7 +7,7 @@ import ScoutingHomepage from "./ScoutingHomepage"
 import MatchesContainer from "../../containers/matches-container"
 import TeamsContainer from "../../containers/teams-container"
 
-export default class ScoutingMenu extends React.Component {
+export default class Scouting extends React.Component {
   constructor (props) {
     super(props)
     this.state = {

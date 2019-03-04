@@ -1,8 +1,9 @@
 import React from "react"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-import ScoutingMenu from "./views/scouting"
+import Scouting from "./views/scouting"
 import {initializeConnection} from "./connectors/tba-api/connector"
-import Homepage from './views/Homepage'
+import Homepage from "./views/Homepage"
+import Tactics from "./views/tactics"
 
 class App extends React.Component {
   constructor (props) {
@@ -15,7 +16,8 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/scouting" component={ScoutingMenu}/>
+          <Route path="/scouting" component={Scouting}/>
+          <Route path="/tactics" component={Tactics}/>
           <Route exact path="/" component={Homepage}/>
         </Switch>
       </BrowserRouter>
