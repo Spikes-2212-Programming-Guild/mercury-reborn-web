@@ -24,7 +24,7 @@ export default function fieldRoutes (props) {
             formPromise={configManager.getFieldForm()}
             formConsumer={form => submitFieldForm(form)}
             title={`Scouting - ${props.match.params.team_id.replace("frc", "")}`}
-            fallbackURL={`${props.match.path}/field/matches`}/>
+            fallbackURL={"/scouting/field/matches"}/>
         )}/>
     </div>
   )

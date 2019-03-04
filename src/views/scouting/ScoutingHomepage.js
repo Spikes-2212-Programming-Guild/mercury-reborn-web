@@ -7,7 +7,7 @@ class ScoutingHomepage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Choose Your Scouting...</h1>
+        <h3>Choose Your Scouting...</h3>
         <List>
           <List.Item>
             <Label basic size={"big"} horizontal><Link to={"/scouting/field/matches"} className="scouting">Scout Field</Link></Label>

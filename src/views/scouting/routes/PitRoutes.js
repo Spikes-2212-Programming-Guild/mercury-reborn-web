@@ -21,7 +21,7 @@ export default function PitRoutes (props) {
             formPromise={configManager.getPitForm()}
             formConsumer={(form) => submitPitForm(form)}
             title={`Pit - ${props.match.params.team}`}
-            fallbackURL={`${props.match.path}/pit/teams`}/>
+            fallbackURL={"/scouting/pit/teams"}/>
         )}/>
     </div>
   )

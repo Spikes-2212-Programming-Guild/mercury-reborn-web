@@ -17,7 +17,7 @@ export default function SpectatorRoutes (props) {
             formConsumer={submitSpectatorForm}
             formPromise={configManager.getSpectatorForm()}
             title={`Match - ${props.match.params.match}`}
-            fallbackURL={`${props.match.path}/spectator/matches`}/>
+            fallbackURL={"/scouting/spectator/matches"}/>
         )}/>
 
       <Route

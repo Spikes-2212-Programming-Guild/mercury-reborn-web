@@ -5,7 +5,7 @@ import { Provider, Subscribe } from "unstated"
 import * as _ from "lodash"
 import { Form, Header } from "semantic-ui-react"
 import propTypes from "prop-types"
-import {withRouter} from "react-router-dom"
+import { withRouter } from "react-router-dom"
 
 class ScoutingForm extends React.Component {
 
@@ -16,7 +16,7 @@ class ScoutingForm extends React.Component {
     fallbackURL: propTypes.string
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
     const formParams = this.props.match.params
 
@@ -31,14 +31,16 @@ class ScoutingForm extends React.Component {
       this.setState({form})
     })
   }
-  async reload() {
+
+  async reload () {
     const formParams = this.props.match.params
 
     const form = await this.props.formPromise
     await this.state.container.initialize(form, formParams)
     return await this.setState({form})
   }
-  render() {
+
+  render () {
     return (
       <div className="scoutingForm segment centered">
         <Header as="h1">{this.state.team}</Header>
@@ -59,9 +61,10 @@ class ScoutingForm extends React.Component {
             <Form.Button onClick={() => {
               this.state.container.submit()
                 .then(() => {
-                  this.reload().then(()=> {
-                    this.props.history.push(this.props.fallbackURL)
-                  })
+                  console.log()
+                  console.log(this.props)
+                  this.props.history.push(this.props.fallbackURL)
+
                 })
             }}>Submit</Form.Button>
           </Form>
