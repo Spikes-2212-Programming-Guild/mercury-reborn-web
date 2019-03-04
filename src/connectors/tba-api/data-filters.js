@@ -35,6 +35,10 @@ export function sortMatchesByCompLevel(matches) {
     .value()
 }
 
+export function filterSpecificMatches(matches, filter) {
+  return _.filter(matches, match => _.includes(filter, match.name))
+}
+
 export function sortTeams(teams) {
   return teams.sort((a, b) => (
     parseInt(a.replace("frc", "")) - parseInt(b.replace("frc", ""))))

@@ -1,6 +1,12 @@
 import axios from "axios"
 import * as mercuryAPI from "../mercury-api-connector"
-import { filterScoutingMenuProperties, sortMatchesByCompLevel, filterTeamProperties, sortTeams } from "./data-filters"
+import {
+  filterScoutingMenuProperties,
+  sortMatchesByCompLevel,
+  filterTeamProperties,
+  sortTeams,
+  filterSpecificMatches
+} from "./data-filters"
 import * as configManager from "../../util/config-manager"
 
 const tbaAddress = "https://www.thebluealliance.com/api/v3"
@@ -22,11 +28,14 @@ async function fetchTeamsForEvent (eventKey) {
   return (await axios.get(`${tbaAddress}/event/${eventKey}/teams`)).data
 }
 
-export async function fetchMatchesForScoutingMenu () {
+export async function fetchMatchesForScoutingMenu (matchesFilter) {
   const eventKey = await configManager.getEventKey()
   let matches = await fetchMatchesForEvent(eventKey)
   matches = filterScoutingMenuProperties(matches)
   matches = sortMatchesByCompLevel(matches)
+  if (matchesFilter) {
+    matches = filterSpecificMatches(matches, matchesFilter)
+  }
   return matches
 }
 
