@@ -1,7 +1,7 @@
 import React from "react"
-import { Label, Header, List } from "semantic-ui-react"
+import { Label, List } from "semantic-ui-react"
 import { Link } from "react-router-dom"
-import ResetConf from "./scouting/ScoutingHomepage"
+import ResetConf from "./ResetConf"
 
 export default function Homepage (props) {
   return (
