@@ -1,6 +1,6 @@
 import React from "react"
 import propTypes from "prop-types"
-import {Button} from "semantic-ui-react"
+import { Button } from "semantic-ui-react"
 import "./style.css"
 
 class Number extends React.Component {

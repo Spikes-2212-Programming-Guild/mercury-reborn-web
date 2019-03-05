@@ -1,4 +1,4 @@
-import {Container} from "unstated"
+import { Container } from "unstated"
 
 class ScoutingFormContainer extends Container {
   constructor(formConsumer) {

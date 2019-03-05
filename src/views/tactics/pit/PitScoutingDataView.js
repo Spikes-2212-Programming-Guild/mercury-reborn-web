@@ -1,7 +1,7 @@
 import React from "react"
-import { fetchPitForm, fetchPitScouting } from "../../../connectors/mercury-api-connector"
-import {Header} from "semantic-ui-react"
-import SimpleTable from "../../../components/DisplayData/table"
+import { fetchPitScouting } from "../../../connectors/mercury-api-connector"
+import { Header } from "semantic-ui-react"
+import FormTable from "../../../components/DisplayData/FormTable"
 
 export default class PitScoutingDataView extends React.Component {
   constructor (props) {
@@ -20,7 +20,7 @@ export default class PitScoutingDataView extends React.Component {
       return (
         <div>
           <Header as={"h3"}>{`Pit Scouting For Team ${team_id}`}</Header>
-          <SimpleTable data={this.state.pitForm}/>
+          <FormTable data={this.state.pitForm}/>
         </div>
       )
     }

@@ -1,5 +1,5 @@
 import React from "react"
-import { Table, Header } from "semantic-ui-react"
+import { Header, Table } from "semantic-ui-react"
 import * as _ from "lodash"
 
 class FormTable extends React.Component {

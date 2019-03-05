@@ -1,7 +1,7 @@
 import React from "react"
 
-import {Link} from "react-router-dom"
-import {Label, List} from "semantic-ui-react"
+import { Link } from "react-router-dom"
+import { Label, List } from "semantic-ui-react"
 
 class ScoutingHomepage extends React.Component {
   render() {

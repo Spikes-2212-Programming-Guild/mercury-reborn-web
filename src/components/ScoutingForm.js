@@ -1,7 +1,7 @@
 import React from "react"
 import QuestionPage from "./QuestionPage"
 import ScoutingFormContainer from "../containers/scouting-form-container"
-import { Provider, Subscribe } from "unstated"
+import { Provider } from "unstated"
 import * as _ from "lodash"
 import { Form, Header } from "semantic-ui-react"
 import propTypes from "prop-types"

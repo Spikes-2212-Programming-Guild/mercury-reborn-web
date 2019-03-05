@@ -1,10 +1,9 @@
 import React from "react"
-import {Grid, Button} from "semantic-ui-react"
-import {Subscribe} from "unstated"
-import {withRouter} from "react-router-dom"
+import { Button, Grid } from "semantic-ui-react"
+import { Subscribe } from "unstated"
+import { withRouter } from "react-router-dom"
 import "./style.css"
 import MatchesContainer from "../../../containers/matches-container"
-
 
 class Match extends React.Component {
 
@@ -25,6 +24,8 @@ class Match extends React.Component {
       <Subscribe to={[MatchesContainer]}>
         {container => {
           const matchData = container.getMatch(name)
+          console.log('match data')
+          console.log(matchData)
           if (matchData) {
             const {blue, red} = matchData
 

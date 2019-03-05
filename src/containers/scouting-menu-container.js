@@ -1,5 +1,4 @@
-import {Container} from "unstated"
-import { fetchMatchesForScoutingMenu } from "../connectors/tba-api/connector"
+import { Container } from "unstated"
 import * as _ from "lodash"
 
 class ScoutingMenuContainer extends Container {

@@ -2,7 +2,6 @@ import React from "react"
 import { fetchSpectatorMatch } from "../../../connectors/mercury-api-connector"
 import FormTable from "../../../components/DisplayData/FormTable"
 
-
 export default class SpectatorMatchView extends React.Component {
   constructor (props) {
     super(props)

@@ -1,7 +1,7 @@
 import React from "react"
 import propTypes from "prop-types"
-import {withRouter} from "react-router-dom"
-import { Button, List } from "semantic-ui-react"
+import { withRouter } from "react-router-dom"
+import { List } from "semantic-ui-react"
 
 function MatchLink (props) {
   const {name} = props

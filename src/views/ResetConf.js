@@ -1,5 +1,5 @@
 import React from "react"
-import {Link} from "semantic-ui-react"
+import { Link } from "semantic-ui-react"
 
 export default class Reset extends React.Component {
   render() {

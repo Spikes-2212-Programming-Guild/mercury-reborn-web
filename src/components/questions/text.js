@@ -1,5 +1,5 @@
 import React from "react"
-import {TextArea} from "semantic-ui-react"
+import { TextArea } from "semantic-ui-react"
 import propTypes from "prop-types"
 
 class Text extends React.Component {

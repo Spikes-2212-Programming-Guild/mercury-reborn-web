@@ -1,4 +1,10 @@
-import { fetchEventKey, fetchPitForm, fetchSpectatorForm, fetchScoutingForm, fetchTBAKey } from "../connectors/mercury-api-connector"
+import {
+  fetchEventKey,
+  fetchPitForm,
+  fetchScoutingForm,
+  fetchSpectatorForm,
+  fetchTBAKey
+} from "../connectors/mercury-api-connector"
 
 const entries = {
   fieldForm: "field-form",

@@ -1,11 +1,10 @@
 import axios from "axios"
-import * as mercuryAPI from "../mercury-api-connector"
 import {
   filterScoutingMenuProperties,
-  sortMatchesByCompLevel,
+  filterSpecificMatches,
   filterTeamProperties,
-  sortTeams,
-  filterSpecificMatches
+  sortMatchesByCompLevel,
+  sortTeams
 } from "./data-filters"
 import * as configManager from "../../util/config-manager"
 

@@ -2,7 +2,6 @@ import React from "react"
 import { fetchSavedSpectatorMatches } from "../../../connectors/mercury-api-connector"
 import { Provider } from "unstated"
 import { Route } from "react-router-dom"
-import PitTeamsMenu from "../pit/PitTeamsMenu"
 import MatchesContainer from "../../../containers/matches-container"
 import SpectatorMatchesMenu from "../spectator/SpectatorMatchesMenu"
 import SpectatorMatchView from "../spectator/SpectatorMatchView"
@@ -16,7 +15,7 @@ export class SpectatorRoutes extends React.Component {
     }
 
     fetchSavedSpectatorMatches().then(matches => this.state.matchesContainer.setMatches(
-      matches.map(match => {return {name:match}})
+      matches.map(match => {return {name: match}})
     ))
   }
 

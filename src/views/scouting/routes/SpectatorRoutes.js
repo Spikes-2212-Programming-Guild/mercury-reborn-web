@@ -3,7 +3,7 @@ import * as configManager from "../../../util/config-manager"
 import { Route } from "react-router-dom"
 import React from "react"
 import MatchesMenu from "../../../components/scouting-menu/MatchesMenu"
-import {submitSpectatorForm} from "../../../connectors/mercury-api-connector"
+import { submitSpectatorForm } from "../../../connectors/mercury-api-connector"
 
 export default function SpectatorRoutes (props) {
   return (
