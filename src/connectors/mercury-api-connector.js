@@ -27,6 +27,10 @@ export async function fetchSavedFieldMatches() {
   return (await axios.get("/tactics/field/match-names")).data
 }
 
+export async function fetchSavedFieldTeams() {
+  return (await axios.get("/tactics/field/teams")).data
+}
+
 export async function fetchSavedPitScoutingTeams() {
   return (await axios.get("/tactics/pit/team-ids")).data
 }
