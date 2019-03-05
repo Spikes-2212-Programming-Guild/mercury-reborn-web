@@ -1,7 +1,7 @@
 import React from "react"
 import { fetchPitScouting } from "../../../connectors/mercury-api-connector"
 import { Header } from "semantic-ui-react"
-import FormTable from "../../../components/DisplayData/FormTable"
+import FormTable from "../../../components/display-data/FormTable"
 
 export default class PitScoutingDataView extends React.Component {
   constructor (props) {

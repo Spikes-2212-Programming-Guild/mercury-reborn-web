@@ -1,6 +1,6 @@
 import React from "react"
 import { fetchFieldMatch } from "../../../connectors/mercury-api-connector"
-import FormTable from "../../../components/DisplayData/FormTable"
+import FormTable from "../../../components/display-data/FormTable"
 import { Header } from "semantic-ui-react"
 
 export default class FieldMatchDataView extends React.Component {
