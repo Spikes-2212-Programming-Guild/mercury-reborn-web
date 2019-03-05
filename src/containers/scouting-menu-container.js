@@ -1,5 +1,4 @@
-import {Container} from "unstated"
-import { fetchMatchesForScoutingMenu } from "../connectors/tba-api/connector"
+import { Container } from "unstated"
 import * as _ from "lodash"
 
 class ScoutingMenuContainer extends Container {
@@ -7,7 +6,8 @@ class ScoutingMenuContainer extends Container {
   constructor () {
     super()
     this.state = {
-      matches: []
+      matches: [],
+      teams: []
     }
   }
 
@@ -18,6 +18,10 @@ class ScoutingMenuContainer extends Container {
     if (this.state.matches.length === 0) {
       return this.setState({matches})
     }
+  }
+
+  setTeams(teams) {
+    return this.setState({teams})
   }
 
   /**

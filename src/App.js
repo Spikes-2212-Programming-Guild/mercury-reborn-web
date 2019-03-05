@@ -1,9 +1,11 @@
 import React from "react"
-import Homepage from "./views/Homepage"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-import {Provider} from "unstated"
-import ScoutingMenu from "./views/ScoutingMenu"
-import {initializeConnection} from "./connectors/tba-api/connector"
+import Scouting from "./views/scouting"
+import { initializeConnection } from "./connectors/tba-api/connector"
+import Homepage from "./views/Homepage"
+import Tactics from "./views/tactics"
+import MainMenu from "./views/MainMenu"
+import { Header } from "semantic-ui-react"
 
 class App extends React.Component {
   constructor (props) {
@@ -15,10 +17,16 @@ class App extends React.Component {
   render () {
     return (
       <BrowserRouter>
-        <Switch>
-          <Route path="/scouting-form" component={ScoutingMenu}/>
-          <Route exact path="/" component={Homepage}/>
-        </Switch>
+        <div>
+          <Header as={"h1"}>Mercury</Header>
+          <MainMenu/>
+          <br/>
+          <Switch>
+            <Route path="/scouting" component={Scouting}/>
+            <Route path="/tactics" component={Tactics}/>
+            <Route exact path="/" component={Homepage}/>
+          </Switch>
+        </div>
       </BrowserRouter>
     )
   }

@@ -1,18 +1,43 @@
-import * as _ from "lodash"
-import { fetchEventKey, fetchScoutingForm, fetchTBAKey } from "../connectors/mercury-api-connector"
+import {
+  fetchEventKey,
+  fetchPitForm,
+  fetchScoutingForm,
+  fetchSpectatorForm,
+  fetchTBAKey
+} from "../connectors/mercury-api-connector"
 
 const entries = {
-  scoutingForm: "form",
+  fieldForm: "field-form",
+  pitForm: "pit-form",
+  spectatorForm: "spectator-form",
   eventKey: "event-id",
   tbaKey: "tba-key",
 
 }
 
-async function getScoutingForm () {
-  let form = JSON.parse(localStorage.getItem(entries.scoutingForm))
-  if (!form || form === "") {
+async function getFieldForm () {
+  let form = JSON.parse(localStorage.getItem(entries.fieldForm))
+  if (!form) {
     form = await fetchScoutingForm()
-    localStorage.setItem(entries.scoutingForm, JSON.stringify(form))
+    localStorage.setItem(entries.fieldForm, JSON.stringify(form))
+  }
+  return form
+}
+
+async function getPitForm() {
+  let form = JSON.parse(localStorage.getItem(entries.pitFrom))
+  if (!form) {
+    form = await fetchPitForm()
+    localStorage.setItem(entries.pitForm, JSON.stringify(form))
+  }
+  return form
+}
+
+async function getSpectatorForm() {
+  let form = JSON.parse(localStorage.getItem(entries.spectatorForm))
+  if (!form) {
+    form = await fetchSpectatorForm()
+    localStorage.setItem(entries.spectatorForm, JSON.stringify(form))
   }
   return form
 }
@@ -37,13 +62,11 @@ async function getEventKey () {
   return eventKey
 }
 
-function reset() {
-  _.map(entries, (value) => localStorage.setItem(value, ""))
-}
 
 export {
-  getScoutingForm,
+  getFieldForm,
+  getPitForm,
+  getSpectatorForm,
   getTBAKey,
-  getEventKey,
-  reset,
+  getEventKey
 }

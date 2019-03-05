@@ -1,5 +1,4 @@
-/* Disable spinner in Number input field */
-
-.input_button {
-    width: 10vw;
+button.number-button {
+	transition: color 0.2s ease;
+	max-width: 28%;
 }

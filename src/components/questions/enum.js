@@ -5,33 +5,37 @@ import { Button } from "semantic-ui-react"
 class Enum extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {
-      selected: ""
-    }
   }
 
-  static propTypes = {
-    options: propTypes.array,
-    valueConsumer: propTypes.func
-  }
-
-  saveAll = option => {
-    this.setState({selected: option})
-    this.props.valueConsumer(option)
+  static defaultProps = {
+    color: "black"
   }
 
   render () {
     return (
-      <Button.Group>
-        {this.props.options.map(option => (
+      <Button.Group fluid>
+        {this.props.options.map((option, index) => (
           <Button
-            active={this.state.selected === option}
-            onClick={() => this.saveAll(option)}>{option}</Button>
-        ))
-        }
+            basic={this.props.supplier() === option ? false : true}
+            key={index}
+            color={(this.props.supplier() === option) ? this.props.color : "black"}
+            onClick={() => {
+              this.props.consumer(option)
+              this.forceUpdate()
+            }}>
+            {option}
+          </Button>
+        ))}
       </Button.Group>
     )
   }
+
+}
+
+Enum.propTypes = {
+  options: propTypes.array,
+  consumer: propTypes.func,
+  supplier: propTypes.func
 }
 
 export default Enum

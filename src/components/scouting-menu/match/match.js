@@ -1,10 +1,9 @@
 import React from "react"
-import {Grid, Button} from "semantic-ui-react"
-import {Subscribe} from "unstated"
-import ScoutingMenuContainer from "../../../containers/scouting-menu-container"
-import {withRouter} from "react-router-dom"
+import { Button, Grid } from "semantic-ui-react"
+import { Subscribe } from "unstated"
+import { withRouter } from "react-router-dom"
 import "./style.css"
-
+import MatchesContainer from "../../../containers/matches-container"
 
 class Match extends React.Component {
 
@@ -13,7 +12,7 @@ class Match extends React.Component {
   }
 
   scoutTeam(matchName, team) {
-    const newPath = `/${window.location.pathname.split("/")[1]}/matches/scout/${matchName}/${team}`
+    const newPath = `${this.props.parentURL}${matchName}/${team}`
     this.props.history.push(newPath)
   }
 
@@ -22,9 +21,11 @@ class Match extends React.Component {
     const {match} = this.props
     const {name} = match.params
     return (
-      <Subscribe to={[ScoutingMenuContainer]}>
+      <Subscribe to={[MatchesContainer]}>
         {container => {
           const matchData = container.getMatch(name)
+          console.log('match data')
+          console.log(matchData)
           if (matchData) {
             const {blue, red} = matchData
 

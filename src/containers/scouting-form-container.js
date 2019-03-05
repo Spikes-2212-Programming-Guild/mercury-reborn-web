@@ -1,37 +1,53 @@
-import {Container} from "unstated"
-import {submitMatch} from "../connectors/mercury-api-connector"
+import { Container } from "unstated"
 
 class ScoutingFormContainer extends Container {
-  constructor() {
+  constructor(formConsumer) {
     super()
     this.state = {
       form: {},
-      teamNumber: null
+      formConsumer
     }
   }
 
-  initialize(form, teamNumber, matchName) {
-    this.setState({form: {}})
+  initialize(form, matchParams) {
     const newForm = {}
+    // formats the questions to the form
     for (const section in form) {
       newForm[section] = {}
       for (const question of form[section]) {
-        newForm[section][question.name] = ""
+        if (question.type === "number") {
+          newForm[section][question.name] = 0
+        } else {
+          newForm[section][question.name] = ""
+        }
       }
     }
-    newForm.matchName = matchName
-    this.setState({form: newForm, teamNumber})
+    // formats the params to the form
+    this.state.matchParams = matchParams
+
+    this.setState({form: newForm}).then(() => console.log(this.state))
   }
 
   set(section, question, answer) {
-    const form = this.state.form
+    const {form} = this.state
     form[section][question] = answer
     this.setState({form})
   }
 
+  get(section, question) {
+    if (this.state.form[section]) {
+      return this.state.form[section][question]
+    }
+    return ""
+  }
+
   submit() {
-    const {teamNumber, form} = this.state
-    return submitMatch(teamNumber, form)
+    const {form, formConsumer} = this.state
+    const {matchParams} = this.state
+    for (const param in matchParams) {
+      form[param] = matchParams[param]
+    }
+    return formConsumer(form)
   }
 }
 

@@ -1,4 +1,4 @@
 import React from "react"
 import Enum from "./enum"
 
-export default Boolean = props => <Enum options={["true", "false"]} {...props} />
+export default (props) => <Enum options={["Yes", "No"]} {...props} />

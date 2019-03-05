@@ -1,5 +1,5 @@
 import React from "react"
-import {Input} from "semantic-ui-react"
+import { TextArea } from "semantic-ui-react"
 import propTypes from "prop-types"
 
 class Text extends React.Component {
@@ -11,7 +11,8 @@ class Text extends React.Component {
   }
 
   static propTypes = {
-    valueConsumer: propTypes.func
+    consumer: propTypes.func,
+    supplier: propTypes.func
   }
 
   handleChange = (e, data) => {
@@ -19,13 +20,13 @@ class Text extends React.Component {
   }
 
   saveAll = data => {
-    this.setState({text: data})
-    this.props.valueConsumer(data)
+    this.setState({text: data.value})
+    this.props.consumer(data.value)
   }
 
   render() {
     return (
-      <Input onChange={this.handleChange} />
+      <TextArea onChange={this.handleChange}>{this.props.supplier()}</TextArea>
     )
   }
 }
