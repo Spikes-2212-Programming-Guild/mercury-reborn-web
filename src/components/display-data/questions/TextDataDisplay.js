@@ -8,7 +8,7 @@ export default function TextDataDisplay (props) {
   const {matches, results, questionName} = props
 
   const dataSet = _.zipObject(matches, results)
-
+  console.log("dataset is", dataSet)
   return (
     <div>
       <h4>{questionName}</h4>

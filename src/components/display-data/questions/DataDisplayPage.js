@@ -22,7 +22,9 @@ export default function (props) {
           }
 
           if (question.type === "text") {
-            return <TextDataDisplay data={question.results} matches={matches} key={questionName} questionName={questionName}/>
+
+            console.log("text data", question)
+            return <TextDataDisplay results={question.results} matches={matches} key={questionName} questionName={questionName}/>
           }
         })
       }
