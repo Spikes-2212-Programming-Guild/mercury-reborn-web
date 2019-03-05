@@ -51,6 +51,6 @@ export async function fetchSpectatorMatch(match_name) {
   return (await axios.get(`/tactics/spectator/match/${match_name}`)).data
 }
 
-export async function fetchTeamFieldData(team_id) {
-  return (await axios.get(`/tactics/field/matches/${team_id}`))
+export async function fetchFieldTeamSummary(team_id) {
+  return (await axios.get(`/tactics/field/matches/${team_id}`)).data
 }
