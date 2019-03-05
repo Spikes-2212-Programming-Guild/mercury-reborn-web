@@ -1,6 +1,6 @@
 import React from "react"
 import { fetchFieldMatch } from "../../../connectors/mercury-api-connector"
-import SimpleTable from "../../../components/DisplayData/table"
+import FormTable from "../../../components/DisplayData/FormTable"
 import {Header} from "semantic-ui-react"
 
 export default class FieldMatchDataView extends React.Component {
@@ -23,7 +23,7 @@ export default class FieldMatchDataView extends React.Component {
       return (
         <div>
           <Header as={"h3"}>{`Match ${match_name} For Team ${team_id}`}</Header>
-          <SimpleTable data={this.state.match}/>
+          <FormTable data={this.state.match}/>
         </div>
       )
     } else {
