@@ -33,11 +33,15 @@ class ScoutingForm extends React.Component {
     })
   }
 
-  confirm() {
+  confirm () {
     const report = generateValidationReport(this.state.container.state.form)
     console.log("report is", report)
-    if (! report.status) {
+    if (!report.status) {
       alert("Please Fill The Whole Form In Order To Proceed")
+    } else {
+      this.state.container.submit().then(() => {
+        this.props.history.push(this.props.fallbackURL)
+      })
     }
   }
 
