@@ -40,6 +40,7 @@ class QuestionPage extends React.Component {
               () => this.props.supplier(question.name))}
           </Form.Field>
         ))}
+        <br/>
       </div>
     )
   }
