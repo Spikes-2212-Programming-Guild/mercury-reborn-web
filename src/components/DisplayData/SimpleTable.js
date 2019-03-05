@@ -5,6 +5,7 @@ import * as _ from "lodash"
 
 export default function SimpleTable (props) {
   const {data} = props
+  const {Row, Cell, Header, HeaderCell} = Table
   return (
     <div>
       <Table columns={2} basic celled>

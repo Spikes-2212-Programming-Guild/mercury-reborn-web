@@ -1,5 +1,6 @@
 import React from "react"
 import { Header, Table } from "semantic-ui-react"
+import SimpleTable from "./SimpleTable"
 import * as _ from "lodash"
 
 class FormTable extends React.Component {
@@ -13,7 +14,7 @@ class FormTable extends React.Component {
         (
           <div>
             <Header as={"h3"}>{category}</Header>
-            <FormTable data={questions}/>
+            <SimpleTable data={questions}/>
           </div>
         )
       )
