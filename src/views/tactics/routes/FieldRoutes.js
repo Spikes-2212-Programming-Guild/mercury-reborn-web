@@ -10,6 +10,7 @@ import { fetchMatchesForScoutingMenu } from "../../../connectors/tba-api/connect
 import FieldMatchDataView from "../field/FieldMatchDataView"
 import TeamsContainer from "../../../containers/teams-container"
 import FieldTeamsMenu from "../field/FieldTeamsMenu"
+import FieldTeamDataView from "../field/FieldTeamDataView"
 
 export class FieldRoutes extends React.Component {
 
@@ -41,8 +42,8 @@ export class FieldRoutes extends React.Component {
           <Route
             path={`${this.props.match.path}/field/match/view/:match_name/:team_id`}
             component={FieldMatchDataView}/>
-          <Route path={`${this.props.match.path}/field/teams/`} exact component={FieldTeamsMenu}/>
-          <Route path={`${this.props.match.path}/field/teams/team/:team_id`}/>
+          <Route path={`${this.props.match.path}/field/teams`} exact component={FieldTeamsMenu}/>
+          <Route path={`${this.props.match.path}/field/teams/:team_id`} component={FieldTeamDataView}/>
         </div>
       </Provider>
     )
