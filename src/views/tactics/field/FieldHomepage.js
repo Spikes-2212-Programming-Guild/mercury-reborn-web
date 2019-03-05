@@ -11,7 +11,7 @@ export default function FieldHomepage (props) {
           <Label basic size={"massive"} horizontal><Link to={`${props.match.path}/match`}>By Match</Link></Label>
         </List.Item>
         <List.Item>
-          <Label basic size={"massive"} horizontal><Link to={`${props.match.path}/team`}>By Team</Link></Label>
+          <Label basic size={"massive"} horizontal><Link to={`${props.match.path}/teams`}>By Team</Link></Label>
         </List.Item>
       </List>
     </div>
