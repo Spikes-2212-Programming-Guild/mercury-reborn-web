@@ -2,16 +2,17 @@ import * as _ from "lodash"
 
 export function generateValidationReport(form) {
 
-  const report = {}
-
-  _.map(form, (category, questions) => {
-    report[category] = []
+  const data = {}
+  let status = true
+  _.map(form, (questions, category) => {
+    data[category] = []
     _.map(questions, (answer, question) => {
       if (answer === "") {
-        report[category].push(question)
+        data[category].push(question)
+        status = false
       }
     })
   })
 
-  return {status: (report === {}), report}
+  return {status, data}
 }

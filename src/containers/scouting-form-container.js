@@ -15,13 +15,15 @@ class ScoutingFormContainer extends Container {
     for (const section in form) {
       newForm[section] = {}
       for (const question of form[section]) {
-        newForm[section][question.name] = ""
+        if (question.type === "number") {
+          newForm[section][question.name] = 0
+        } else {
+          newForm[section][question.name] = ""
+        }
       }
     }
     // formats the params to the form
-    for (const param in matchParams) {
-      newForm[param] = matchParams[param]
-    }
+    this.state.matchParams = matchParams
 
     this.setState({form: newForm}).then(() => console.log(this.state))
   }
@@ -41,6 +43,10 @@ class ScoutingFormContainer extends Container {
 
   submit() {
     const {form, formConsumer} = this.state
+    const {matchParams} = this.state
+    for (const param in matchParams) {
+      form[param] = matchParams[param]
+    }
     return formConsumer(form)
   }
 }

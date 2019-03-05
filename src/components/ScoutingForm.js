@@ -3,9 +3,10 @@ import QuestionPage from "./QuestionPage"
 import ScoutingFormContainer from "../containers/scouting-form-container"
 import { Provider } from "unstated"
 import * as _ from "lodash"
-import { Form, Header } from "semantic-ui-react"
+import { Form, Header, Modal } from "semantic-ui-react"
 import propTypes from "prop-types"
 import { withRouter } from "react-router-dom"
+import { generateValidationReport } from "../util/form-validator"
 
 class ScoutingForm extends React.Component {
 
@@ -32,12 +33,12 @@ class ScoutingForm extends React.Component {
     })
   }
 
-  async reload () {
-    const formParams = this.props.match.params
-
-    const form = await this.props.formPromise
-    await this.state.container.initialize(form, formParams)
-    return await this.setState({form})
+  confirm() {
+    const report = generateValidationReport(this.state.container.state.form)
+    console.log("report is", report)
+    if (! report.status) {
+      alert("Please Fill The Whole Form In Order To Proceed")
+    }
   }
 
   render () {
@@ -58,15 +59,7 @@ class ScoutingForm extends React.Component {
               ))
             }
 
-            <Form.Button onClick={() => {
-              this.state.container.submit()
-                .then(() => {
-                  console.log()
-                  console.log(this.props)
-                  this.props.history.push(this.props.fallbackURL)
-
-                })
-            }}>Submit</Form.Button>
+            <Form.Button onClick={() => this.confirm()}>Submit</Form.Button>
           </Form>
         </Provider>
       </div>

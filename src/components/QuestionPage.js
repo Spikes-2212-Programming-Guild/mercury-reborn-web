@@ -5,6 +5,8 @@ import Boolean from "./questions/boolean"
 import Number from "./questions/number/"
 import Text from "./questions/text"
 import { Form, Header } from "semantic-ui-react"
+import { Subscribe } from "unstated"
+import ScoutingFormContainer from "../containers/scouting-form-container"
 
 const QuestionRegistry = {
   "number": (props, key, consumer, supplier) => (
@@ -32,14 +34,20 @@ class QuestionPage extends React.Component {
     return (
       <div>
         <Header as="h3" dividing>{this.props.title}</Header>
-        {this.props.questions.map((question, index) => (
-          <Form.Field key={index}>
-            <Header as="h5">{question.name}</Header>
-            {QuestionRegistry[question.type](question, index,
-              answer => this.props.consumer(question.name, answer),
-              () => this.props.supplier(question.name))}
-          </Form.Field>
-        ))}
+        <Subscribe to={[ScoutingFormContainer]}>
+          {
+            () => (
+              this.props.questions.map((question, index) => (
+                <Form.Field key={index}>
+                  <Header as="h5">{question.name}</Header>
+                  {QuestionRegistry[question.type](question, index,
+                    answer => this.props.consumer(question.name, answer),
+                    () => this.props.supplier(question.name))}
+                </Form.Field>
+              ))
+            )
+          }
+        </Subscribe>
         <br/>
       </div>
     )
