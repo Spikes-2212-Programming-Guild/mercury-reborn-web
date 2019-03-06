@@ -1,4 +1,5 @@
 import React from "react"
+import SimpleTable from "./SimpleTable"
 
 
 export default class LineChart extends React.Component {
@@ -8,6 +9,7 @@ export default class LineChart extends React.Component {
   }
 
   render() {
-    return ""
+    const {dataSet} = this.props
+    return <SimpleTable data={dataSet}/>
   }
 }
