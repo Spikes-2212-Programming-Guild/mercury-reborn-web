@@ -7,7 +7,6 @@ import * as _ from "lodash"
 export default function NumberDataDisplay (props) {
   const {data, matches, questionName} = props
 
-
   const {all} = data.results
   return (
     <div>
@@ -15,5 +14,5 @@ export default function NumberDataDisplay (props) {
       <LineChart dataSet={_.zipObject(matches, all)}/>
       <SimpleTable data={data.results}/>
     </div>
-   )
+  )
 }
