@@ -8,6 +8,7 @@ export default function NumberDataDisplay (props) {
   const {data, matches, questionName} = props
 
   const {all} = data.results
+  delete data.results.all
   return (
     <div>
       <h4>{questionName}</h4>
