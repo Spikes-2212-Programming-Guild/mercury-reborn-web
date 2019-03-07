@@ -13,9 +13,7 @@ export default function (props) {
     <div>
       {
         _.map(questions,(question, questionName) => {
-		console.log("type is", question.type)
           if (question.type === "number") {
-		console.log("number")
             return <NumberDataDisplay data={question} key={questionName} matches={matches} questionName={questionName}/>
           }
 

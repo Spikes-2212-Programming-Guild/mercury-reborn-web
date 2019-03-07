@@ -8,15 +8,12 @@ export default function NumberDataDisplay (props) {
   const {data, matches, questionName} = props
 
 
-  const results = data.results.all
-
-  delete data.results.all
-
+  const {all} = data.results
   return (
     <div>
       <h4>{questionName}</h4>
-	  #<LineChart dataSet={_.zipObject(matches, results)}/>
-      <SimpleTable data={data}/>
+      <LineChart dataSet={_.zipObject(matches, all)}/>
+      <SimpleTable data={data.results}/>
     </div>
-  )
+   )
 }
