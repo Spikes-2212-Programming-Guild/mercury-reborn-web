@@ -9,6 +9,8 @@ class Number extends React.Component {
     this.state = {
       num: this.props.min
     }
+
+    this.props.consumer(this.props.min)
   }
 
   static propTypes = {
