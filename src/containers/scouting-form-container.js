@@ -16,7 +16,7 @@ class ScoutingFormContainer extends Container {
       newForm[section] = {}
       for (const question of form[section]) {
         if (question.type === "number") {
-          newForm[section][question.name] = 0
+          newForm[section][question.name] = question.min ? question.min : 0
         } else {
           newForm[section][question.name] = ""
         }
