@@ -1,5 +1,6 @@
 import axios from "axios"
 
+axios.defaults.baseURL = "/api/"
 async function fetchConfigOption(option) {
   return (await axios.get(`/config/${option}`)).data
 }
