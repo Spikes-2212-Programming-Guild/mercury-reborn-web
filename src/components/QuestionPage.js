@@ -19,39 +19,33 @@ const QuestionRegistry = {
     <Boolean {...props} consumer={consumer} supplier={supplier} key={key}/>)
 }
 
-class QuestionPage extends React.Component {
-  constructor (props) {
-    super(props)
-  }
+function QuestionPage (props) {
+  return (
+    <div>
+      <Header as="h3" dividing>{props.title}</Header>
+      <Subscribe to={[ScoutingFormContainer]}>
+        {
+          () => (
+            props.questions.map((question, index) => (
+              <Form.Field key={index}>
+                <Header as="h5">{question.name}</Header>
+                {QuestionRegistry[question.type](question, index,
+                  answer => props.consumer(question.name, answer),
+                  () => props.supplier(question.name))}
+              </Form.Field>
+            ))
+          )
+        }
+      </Subscribe>
+      <br/>
+    </div>
+  )
+}
 
-  static propTypes = {
-    questions: propTypes.array,
-    consumer: propTypes.func,
-    supplier: propTypes.func
-  }
-
-  render () {
-    return (
-      <div>
-        <Header as="h3" dividing>{this.props.title}</Header>
-        <Subscribe to={[ScoutingFormContainer]}>
-          {
-            () => (
-              this.props.questions.map((question, index) => (
-                <Form.Field key={index}>
-                  <Header as="h5">{question.name}</Header>
-                  {QuestionRegistry[question.type](question, index,
-                    answer => this.props.consumer(question.name, answer),
-                    () => this.props.supplier(question.name))}
-                </Form.Field>
-              ))
-            )
-          }
-        </Subscribe>
-        <br/>
-      </div>
-    )
-  }
+QuestionPage.propTypes = {
+  questions: propTypes.array,
+  consumer: propTypes.func,
+  supplier: propTypes.func
 }
 
 export default QuestionPage
