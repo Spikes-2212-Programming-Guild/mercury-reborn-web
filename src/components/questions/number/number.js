@@ -3,53 +3,47 @@ import propTypes from "prop-types"
 import { Button } from "semantic-ui-react"
 import "./style.css"
 
-class Number extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      num: this.props.min
-    }
-  }
+function Number (props) {
 
-  static propTypes = {
-    min: propTypes.number,
-    num: propTypes.number,
-    helpers: propTypes.bool,
-    consumer: propTypes.func,
-    supplier: propTypes.func
-  }
+  const {min, supplier, helpers, consumer} = props
 
-  static defaultProps = {
-    min: 0,
-    num: 0,
-    helpers: true
-  }
-
-  handleMinusClick = () => {
-    this.saveAll(parseInt(this.props.supplier()) - 1)
-  }
-
-  handlePlusClick = () => {
-    this.saveAll(parseInt(this.props.supplier()) + 1)
-  }
-
-  saveAll = n => {
+  const saveAll = n => {
     n = n ? n : 0
-    const num = n > this.props.min ? n : this.props.min
-    this.props.consumer(num)
-    this.forceUpdate()
+    const num = n > min ? n : min
+    consumer(num)
   }
 
-  render() {
+  return (
+    <Button.Group fluid>
+      {helpers ? <Button
+        className="number-button"
+        basic
+        color="black"
+        onClick={() => saveAll(supplier() - 1)}>
+        {"-"}
+      </Button> : ""}
+      <Button basic color="black" className="input_button">{props.supplier()}</Button>
+      {helpers ? <Button
+        className="number-button"
+        basic
+        color="black"
+        onClick={() => saveAll(supplier() + 1)}>
+        {"+"}
+      </Button> : ""}
+    </Button.Group>
+  )
+}
 
-    return (
-      <Button.Group fluid>
-        {this.props.helpers ? <Button className="number-button" basic color="black" onClick={this.handleMinusClick}>-</Button> : ""}
-        <Button basic color="black" className="input_button">{this.props.supplier()}</Button>
-        {this.props.helpers ? <Button className="number-button" basic color="black" onClick={this.handlePlusClick}>+</Button> : ""}
-      </Button.Group>
-    )
-  }
+Number.defaultProps = {
+  min: 0,
+  helpers: true
+}
+
+Number.propTypes = {
+  min: propTypes.number,
+  helpers: propTypes.bool,
+  consumer: propTypes.func,
+  supplier: propTypes.func
 }
 
 export default Number
