@@ -9,7 +9,7 @@ class ScoutingFormContainer extends Container {
     }
   }
 
-  initialize(form, matchParams) {
+  initialize(form, matchMetadata) {
     const newForm = {}
     // formats the questions to the form
     for (const section in form) {
@@ -23,7 +23,7 @@ class ScoutingFormContainer extends Container {
       }
     }
     // formats the params to the form
-    this.state.matchParams = matchParams
+    this.state.matchMetadata = matchMetadata
 
     this.setState({form: newForm}).then(() => console.log(this.state))
   }
@@ -43,9 +43,9 @@ class ScoutingFormContainer extends Container {
 
   submit() {
     const {form, formConsumer} = this.state
-    const {matchParams} = this.state
-    for (const param in matchParams) {
-      form[param] = matchParams[param]
+    const {matchMetadata} = this.state
+    for (const param in matchMetadata) {
+      form[param] = matchMetadata[param]
     }
     return formConsumer(form)
   }
