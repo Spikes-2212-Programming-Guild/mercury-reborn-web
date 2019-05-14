@@ -8,7 +8,7 @@ export default (props) => {
   const {path} = props.match
   return (<div>
     <Route exact path={`${path}`} component={TacticsHomepage}/>
-    <Route path={`${path}/pit`} component={PitRoutes}/>
+    <PitRoutes {...props}/>
     <FieldRoutes {...props}/>
     <SpectatorRoutes {...props}/>
   </div>)
