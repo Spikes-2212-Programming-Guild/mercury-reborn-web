@@ -1,29 +1,19 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import { fetchPitScouting } from "../../../connectors/mercury-api-connector"
 import { Header } from "semantic-ui-react"
 import FormTable from "../../../components/display-data/FormTable"
 
-export default class PitScoutingDataView extends React.Component {
-  constructor (props) {
-    super(props)
+export default ({match}) => {
+  const [form, setForm] = useState({})
 
-    this.state = {
-      pitForm: null
-    }
-    const {team_id} = props.match.params
-    fetchPitScouting(team_id).then(pitForm => this.setState({pitForm}))
-  }
+  const {team_id} = match.params
 
-  render() {
-    if (this.state.pitForm) {
-      const {team_id} = this.props.match.params
-      return (
-        <div>
-          <Header as={"h3"}>{`Pit Scouting For Team ${team_id}`}</Header>
-          <FormTable data={this.state.pitForm}/>
-        </div>
-      )
-    }
-    return ""
-  }
+  useEffect(() => {fetchPitScouting(team_id).then(form => setForm(form))}, [])
+
+  return (
+    <div>
+      <Header as={"h3"}>{`Pit Scouting For Team ${team_id}`}</Header>
+      <FormTable data={form}/>
+    </div>
+  )
 }
