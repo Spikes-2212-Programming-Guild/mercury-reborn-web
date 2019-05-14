@@ -2,30 +2,25 @@ import React from "react"
 import { Route } from "react-router-dom"
 import TeamsContainer from "../../../containers/teams-container"
 import { fetchSavedPitScoutingTeams } from "../../../connectors/mercury-api-connector"
-import { Provider } from "unstated"
 import PitTeamsMenu from "../pit/PitTeamsMenu"
 import PitScoutingDataView from "../pit/PitScoutingDataView"
 
-export class PitRoutes extends React.Component {
-  constructor (props) {
-    super(props)
+export const PitRoutes = ({match}) => {
 
-    this.state = {
-      teamsContainer: new TeamsContainer()
-    }
+  const container = TeamsContainer.useContainer()
 
-    fetchSavedPitScoutingTeams().then(teams => this.state.teamsContainer.setTeams(
-      teams.sort((a, b) => (
-        parseInt(a.replace("frc", "")) - parseInt(b.replace("frc", ""))))))
-  }
+  fetchSavedPitScoutingTeams().then(teams => container.setTeams(teams))
 
-  render () {
-    return (
-      <Provider inject={[this.state.teamsContainer]}>
-        <Route path={`${this.props.match.path}/pit`} exact component={PitTeamsMenu}/>
-        <Route path={`${this.props.match.path}/pit/:team_id`} component={PitScoutingDataView}/>
-      </Provider>
-    )
-  }
-
+  return (
+    <div>
+      <Route path={`${match.path}/pit`} exact component={PitTeamsMenu}/>
+      <Route path={`${match.path}/pit/:team_id`} component={PitScoutingDataView}/>
+    </div>
+  )
 }
+
+export default (props) => (
+  <TeamsContainer.Provider>
+    <PitRoutes {...props}/>
+  </TeamsContainer.Provider>
+)

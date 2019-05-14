@@ -1,31 +1,32 @@
 import React from "react"
 import { fetchSavedSpectatorMatches } from "../../../connectors/mercury-api-connector"
-import { Provider } from "unstated"
+import {useContainer} from "unstated-next"
 import { Route } from "react-router-dom"
 import MatchesContainer from "../../../containers/matches-container"
 import SpectatorMatchesMenu from "../spectator/SpectatorMatchesMenu"
 import SpectatorMatchView from "../spectator/SpectatorMatchView"
 
-export class SpectatorRoutes extends React.Component {
-  constructor (props) {
-    super(props)
 
-    this.state = {
-      matchesContainer: new MatchesContainer()
-    }
+const SpectatorRoutes = ({match}) => {
 
-    fetchSavedSpectatorMatches().then(matches => this.state.matchesContainer.setMatches(
-      matches.map(match => {return {name: match}})
-    ))
-  }
+  const container = MatchesContainer.useContainer()
 
-  render () {
-    return (
-      <Provider inject={[this.state.matchesContainer]}>
-        <Route path={`${this.props.match.path}/spectator`} exact component={SpectatorMatchesMenu}/>
-        <Route path={`${this.props.match.path}/spectator/matches/:match_name`} component={SpectatorMatchView}/>
-      </Provider>
-    )
-  }
+  fetchSavedSpectatorMatches().then(matches => container.setMatches(
+    matches.map(match => {return {name: match}})
+  ))
+
+  return (
+    <div>
+      <Route path={`${match.path}/spectator`} exact component={SpectatorMatchesMenu}/>
+      <Route path={`${match.path}/spectator/matches/:match_name`} component={SpectatorMatchView}/>
+    </div>
+  )
+
 
 }
+
+export default (props) => (
+  <MatchesContainer.Provider>
+    <SpectatorRoutes {...props}/>
+  </MatchesContainer.Provider>
+)
