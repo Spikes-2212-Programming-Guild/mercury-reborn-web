@@ -1,21 +1,13 @@
-import { Container } from "unstated"
+import {useState} from "react"
+import {createContainer} from "unstated-next"
 import * as _ from "lodash"
 
-export default class TeamsContainer extends Container {
-  constructor () {
-    super()
-    this.state = {
-      teams: []
-    }
-  }
 
-  setTeams(teams) {
-    return this.setState({teams})
-  }
+const TeamsContainer = () => {
+  const [teams, setTeams] = useState([])
+  const getTeam = (name) => _.fitler(teams, team => team === name)[0]
 
-  getTeam(name) {
-    return _.filter(this.state.teams, team => team === name)
-  }
-
-
+  return {teams, setTeams, getTeam}
 }
+
+export default createContainer(TeamsContainer)
