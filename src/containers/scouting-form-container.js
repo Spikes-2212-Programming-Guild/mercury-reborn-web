@@ -1,54 +1,49 @@
-import { Container } from "unstated"
+import { createContainer } from "unstated-next"
+import { useState } from "react"
 
-class ScoutingFormContainer extends Container {
-  constructor(formConsumer) {
-    super()
-    this.state = {
-      form: {},
-      formConsumer
-    }
+const ScoutingFormContainer = () => {
+  const [form, setForm] = useState({})
+
+  const set = (subform, question, answer) => {
+    const newForm = {...form}
+    newForm[subform][question].value = answer
+    setForm(newForm)
   }
 
-  initialize(form, matchMetadata) {
+  const get = (subform, question) => {
+    return (form[subform] && form[subform][question]) ? form[subform][question].value : ""
+  }
+  const initialize = (formConfig) => {
     const newForm = {}
-    // formats the questions to the form
-    for (const section in form) {
-      newForm[section] = {}
-      for (const question of form[section]) {
-        if (question.type === "number") {
-          newForm[section][question.name] = 0
-        } else {
-          newForm[section][question.name] = ""
-        }
+    for (const subform in formConfig) {
+      newForm[subform] = {}
+      for (const question of formConfig[subform]) {
+        const {name, optional, type} = question
+        const value = (type === "number") ? 0 : ""
+
+        newForm[subform][name] = {value, optional}
       }
     }
-    // formats the params to the form
-    this.state.matchMetadata = matchMetadata
-
-    this.setState({form: newForm}).then(() => console.log(this.state))
+    console.log(newForm)
+    setForm(newForm)
   }
 
-  set(section, question, answer) {
-    const {form} = this.state
-    form[section][question] = answer
-    this.setState({form})
-  }
-
-  get(section, question) {
-    if (this.state.form[section]) {
-      return this.state.form[section][question]
+  const packValues = () => {
+    const result = {}
+    console.log(form)
+    for (const subform in form) {
+      result[subform] = {}
+      for (const question in form[subform]) {
+        const {value} = form[subform][question]
+        console.log(subform, question, value)
+        result[subform][question] = value
+      }
     }
-    return ""
+    return result
   }
 
-  submit() {
-    const {form, formConsumer} = this.state
-    const {matchMetadata} = this.state
-    for (const param in matchMetadata) {
-      form[param] = matchMetadata[param]
-    }
-    return formConsumer(form)
-  }
+  return {form, set, get, initialize, packValues}
+
 }
 
-export default ScoutingFormContainer
+export default createContainer(ScoutingFormContainer)
