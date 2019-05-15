@@ -2,16 +2,19 @@ import React from "react"
 import propTypes from "prop-types"
 import { Button } from "semantic-ui-react"
 import "./style.css"
+import ScoutingFormContainer from "../../../containers/scouting-form-container"
 
-function Number (props) {
+function Number ({min, helpers, subform, name}) {
 
-  const {min, supplier, helpers, consumer} = props
-
+  const container = ScoutingFormContainer.useContainer()
   const saveAll = n => {
     n = n ? n : 0
+
     const num = n > min ? n : min
-    consumer(num)
+    container.set(subform, name, num)
   }
+
+  const value = () => container.get(subform, name)
 
   return (
     <Button.Group fluid>
@@ -19,15 +22,15 @@ function Number (props) {
         className="number-button"
         basic
         color="black"
-        onClick={() => saveAll(supplier() - 1)}>
+        onClick={() => saveAll(value() - 1)}>
         {"-"}
       </Button> : ""}
-      <Button basic color="black" className="input_button">{props.supplier()}</Button>
+      <Button basic color="black" className="input_button">{value()}</Button>
       {helpers ? <Button
         className="number-button"
         basic
         color="black"
-        onClick={() => saveAll(supplier() + 1)}>
+        onClick={() => saveAll(value() + 1)}>
         {"+"}
       </Button> : ""}
     </Button.Group>

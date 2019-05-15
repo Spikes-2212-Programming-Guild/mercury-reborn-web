@@ -5,47 +5,36 @@ import Boolean from "./questions/boolean"
 import Number from "./questions/number/"
 import Text from "./questions/text"
 import { Form, Header } from "semantic-ui-react"
-import { Subscribe } from "unstated"
-import ScoutingFormContainer from "../containers/scouting-form-container"
 
 const QuestionRegistry = {
-  "number": (props, key, consumer, supplier) => (
-    <Number {...props} consumer={consumer} supplier={supplier} key={key}/>),
-  "enum": (props, key, consumer, supplier) => (
-    <Enum {...props} consumer={consumer} supplier={supplier} key={key}/>),
-  "text": (props, key, consumer, supplier) => (
-    <Text {...props} consumer={consumer} supplier={supplier} key={key}/>),
-  "boolean": (props, key, consumer, supplier) => (
-    <Boolean {...props} consumer={consumer} supplier={supplier} key={key}/>)
+  "number": (props, key, subform) => (
+    <Number {...props} subform={subform} key={key}/>),
+  "enum": (props, key, subform) => (
+    <Enum {...props}  key={key} subform={subform}/>),
+  "text": (props, key, subform) => (
+    <Text {...props} key={key} subform={subform}/>),
+  "boolean": (props, key, subform) => (
+    <Boolean {...props} key={key} subform={subform}/>)
 }
 
-function QuestionPage (props) {
-  return (
-    <div>
-      <Header as="h3" dividing>{props.title}</Header>
-      <Subscribe to={[ScoutingFormContainer]}>
-        {
-          () => (
-            props.questions.map((question, index) => (
-              <Form.Field key={index}>
-                <Header as="h5">{question.name}</Header>
-                {QuestionRegistry[question.type](question, index,
-                  answer => props.consumer(question.name, answer),
-                  () => props.supplier(question.name))}
-              </Form.Field>
-            ))
-          )
-        }
-      </Subscribe>
-      <br/>
-    </div>
-  )
-}
+const QuestionPage = ({questions, title}) => (
+  <div>
+    <Header as="h3" dividing>{title}</Header>
+    {
+      questions.map((question, index) => (
+        <Form.Field key={index}>
+          <Header as="h5">{question.name}</Header>
+          {QuestionRegistry[question.type](question, index, title)}
+        </Form.Field>
+      ))
+    }
+    <br/>
+  </div>
+)
 
 QuestionPage.propTypes = {
+  title: propTypes.string,
   questions: propTypes.array,
-  consumer: propTypes.func,
-  supplier: propTypes.func
 }
 
 export default QuestionPage

@@ -1,20 +1,25 @@
 import React from "react"
 import propTypes from "prop-types"
 import { Button } from "semantic-ui-react"
+import ScoutingFormContainer from "../../containers/scouting-form-container"
 
-function Enum (props) {
 
-  const {options, supplier, consumer, color} = props
+function Enum ({color, options, subform, name}) {
+
+  const container = ScoutingFormContainer.useContainer()
+
+  const get = () => container.get(subform, name)
+  const set = (val) => container.set(subform, name, val)
 
   return (
     <Button.Group fluid>
       {options.map((option, index) => (
         <Button
-          basic={supplier() !== option}
+          basic={get() !== option}
           key={index}
-          color={(supplier() === option) ? color : "black"}
+          color={(get() === option) ? color : "black"}
           onClick={() => {
-            consumer(option)
+            set(option)
           }}>
           {option}
         </Button>
@@ -25,8 +30,8 @@ function Enum (props) {
 
 Enum.propTypes = {
   options: propTypes.array,
-  consumer: propTypes.func,
-  supplier: propTypes.func
+  subform: propTypes.string,
+  name: propTypes.string
 }
 
 Enum.defaultProps = {
