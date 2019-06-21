@@ -35,7 +35,7 @@ export function sortMatchesByCompLevel(matches) {
     .value()
 }
 
-export function filterSpecificMatches(matches, filter) {
+export function filterOnly(matches, filter) {
   return _.filter(matches, match => _.includes(filter, match.name))
 }
 

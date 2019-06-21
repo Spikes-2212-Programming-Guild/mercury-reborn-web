@@ -18,7 +18,7 @@ const SpectatorRoutes = ({match}) => {
   return (
     <div>
       <Route path={`${match.path}/spectator`} exact component={SpectatorMatchesMenu}/>
-      <Route path={`${match.path}/spectator/matches/:match_name`} component={SpectatorMatchView}/>
+      <Route path={`${match.path}/spectator/matches/:match_name`} exact component={SpectatorMatchView}/>
     </div>
   )
 

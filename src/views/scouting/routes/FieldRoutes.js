@@ -6,26 +6,31 @@ import ScoutingForm from "../../../components/ScoutingForm"
 import Match from "../../../components/scouting-menu/match/match"
 import React from "react"
 
-export default function fieldRoutes (props) {
+const FieldForm = (props) => (
+  <ScoutingForm
+    {...props}
+    formSupplier={configManager.getFieldForm}
+    formConsumer={submitFieldForm}
+    title={`Scouting - ${props.match.params.team_id.replace("frc", "")}`}
+    fallbackURL={"/scouting/field/matches"}
+  />
+)
+
+const FieldRoutes = ({match}) => {
   return (
     <div>
       <Route
         exact
-        path={`${props.match.path}/field/matches`}
-        component={() => <MatchesMenu parentURL={`${props.match.path}/field`}/>}/>
+        path={`${match.path}/field/matches`}
+        component={() => <MatchesMenu parentURL={`${match.path}/field`}/>}/>
       <Route
-        path={`${props.match.path}/field/matches/:name`}
-        component={() => <Match parentURL={`${props.match.path}/field/matches/scout/`}/>}/>
+        path={`${match.path}/field/matches/:name`}
+        component={() => <Match parentURL={`${match.path}/field/matches/scout/`}/>}/>
       <Route
-        path={`${props.match.path}/field/matches/scout/:name/:team_id/`}
-        component={(props) => (
-          <ScoutingForm
-            {...props}
-            formPromise={configManager.getFieldForm()}
-            formConsumer={form => submitFieldForm(form)}
-            title={`Scouting - ${props.match.params.team_id.replace("frc", "")}`}
-            fallbackURL={"/scouting/field/matches"}/>
-        )}/>
+        path={`${match.path}/field/matches/scout/:name/:team_id/`}
+        component={FieldForm}/>
     </div>
   )
 }
+
+export default FieldRoutes

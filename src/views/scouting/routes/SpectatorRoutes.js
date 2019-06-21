@@ -4,26 +4,31 @@ import { Route } from "react-router-dom"
 import React from "react"
 import MatchesMenu from "../../../components/scouting-menu/MatchesMenu"
 import { submitSpectatorForm } from "../../../connectors/mercury-api-connector"
+import Match from "../../../components/scouting-menu/match/match"
 
-export default function SpectatorRoutes (props) {
+const SpectatorForm = (props) => (
+  <ScoutingForm
+    {...props}
+    formConsumer={submitSpectatorForm}
+    formSupplier={configManager.getSpectatorForm}
+    title={`Match - ${props.match.params.match}`}
+    fallbackURL={"/scouting/spectator/matches"}/>
+)
+
+const SpectatorRoutes = ({match}) => {
   return (
     <div>
       <Route
         exact
-        path={`${props.match.path}/spectator/matches/:match`}
-        component={props => (
-          <ScoutingForm
-            {...props}
-            formConsumer={submitSpectatorForm}
-            formPromise={configManager.getSpectatorForm()}
-            title={`Match - ${props.match.params.match}`}
-            fallbackURL={"/scouting/spectator/matches"}/>
-        )}/>
+        path={`${match.path}/spectator/matches`}
+        component={() => <MatchesMenu parentURL={`${match.path}/spectator`}/>}/>
 
       <Route
         exact
-        path={`${props.match.path}/spectator/matches`}
-        component={() => <MatchesMenu parentURL={`${props.match.path}/spectator`}/>}/>
+        path={`${match.path}/spectator/:match/:team_id`}
+        component={SpectatorForm}/>
     </div>
   )
 }
+
+export default SpectatorRoutes

@@ -1,5 +1,4 @@
-import React from "react"
-import { Provider } from "unstated"
+import React, { useEffect } from "react"
 import * as tbaApi from "../../connectors/tba-api/connector"
 import { Route } from "react-router-dom"
 import { FieldRoutes, PitRoutes, SpectatorRoutes } from "./routes"
@@ -7,26 +6,38 @@ import ScoutingHomepage from "./ScoutingHomepage"
 import MatchesContainer from "../../containers/matches-container"
 import TeamsContainer from "../../containers/teams-container"
 
-export default class Scouting extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      matchesContainer: new MatchesContainer(),
-      teamsContainer: new TeamsContainer()
-    }
-    tbaApi.fetchMatchesForScoutingMenu().then(matches => this.state.matchesContainer.setMatches(matches))
-    tbaApi.fetchTeamsForTeamsList().then(teams => this.state.teamsContainer.setTeams(teams))
+const Scouting = (props) => {
 
-  }
+  const matchesContainer = MatchesContainer.useContainer()
+  const teamsContainer = TeamsContainer.useContainer()
 
-  render () {
-    return (
-      <Provider inject={[this.state.matchesContainer, this.state.teamsContainer]}>
-        <Route exact path={`${this.props.match.path}/`} component={ScoutingHomepage}/>
-        <SpectatorRoutes {...this.props}/>
-        <PitRoutes {...this.props}/>
-        <FieldRoutes {...this.props}/>
-      </Provider>
-    )
-  }
+  useEffect(() => {
+    tbaApi.fetchMatchesForScoutingMenu()
+      .then(matches => {
+        console.log("matches are", matches)
+        matchesContainer.setMatches(matches)
+      })
+  },
+  [])
+  useEffect(() => {
+    tbaApi.fetchTeamsForTeamsList()
+      .then(teams => teamsContainer.setTeams(teams))
+  }, [])
+  return (
+    <div>
+      <Route exact path={`${props.match.path}/`} component={ScoutingHomepage}/>
+      <SpectatorRoutes {...props}/>
+      <PitRoutes {...props}/>
+      <FieldRoutes {...props}/>
+    </div>
+  )
 }
+
+export default (props) => (
+  <MatchesContainer.Provider>
+    <TeamsContainer.Provider>
+      <Scouting {...props}/>
+    </TeamsContainer.Provider>
+  </MatchesContainer.Provider>
+)
+

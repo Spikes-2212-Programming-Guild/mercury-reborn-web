@@ -5,24 +5,34 @@ import React from "react"
 import ScoutingForm from "../../../components/ScoutingForm"
 import { submitPitForm } from "../../../connectors/mercury-api-connector"
 
-export default function PitRoutes (props) {
+const PitForm = (props) => {
+
+  const team_number = props.match.params.team.replace("frc", "")
+
+  return (
+    <ScoutingForm
+      {...props}
+      formSupplier={configManager.getPitForm}
+      formConsumer={submitPitForm}
+      title={`Pit Scouting For Team - ${team_number}`}
+      fallbackURL={"/scouting/pit/teams"}
+    />
+  )
+}
+const PitRoutes = ({match}) => {
+  console.log("path to pit is", match.path)
   return (
     <div>
       <Route
         exact
-        path={`${props.match.path}/pit/teams`}
-        component={(props) => <TeamsMenu {...props} parentURL={`${props.match.path}`}/>}/>
+        path={`${match.path}/pit/teams`}
+        component={(props) => <TeamsMenu {...props} parentURL={`${match.path}/pit/teams`}/>}/>
       <Route
         exact
-        path={`${props.match.path}/pit/teams/:team`}
-        component={(props) => (
-          <ScoutingForm
-            {...props}
-            formPromise={configManager.getPitForm()}
-            formConsumer={(form) => submitPitForm(form)}
-            title={`Pit - ${props.match.params.team}`}
-            fallbackURL={"/scouting/pit/teams"}/>
-        )}/>
+        path={`${match.path}/pit/teams/:team`}
+        component={PitForm}/>
     </div>
   )
 }
+
+export default PitRoutes

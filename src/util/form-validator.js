@@ -4,11 +4,11 @@ export function generateValidationReport(form) {
 
   const data = {}
   let status = true
-  _.map(form, (questions, category) => {
-    data[category] = []
-    _.map(questions, (answer, question) => {
-      if (answer === "") {
-        data[category].push(question)
+  _.map(form, (questions, subform) => {
+    data[subform] = []
+    _.map(questions, (questionData, question) => {
+      if (questionData.value === "" && !questionData.optional) {
+        data[subform].push(question)
         status = false
       }
     })

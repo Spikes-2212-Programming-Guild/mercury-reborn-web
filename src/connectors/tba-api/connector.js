@@ -1,7 +1,7 @@
 import axios from "axios"
 import {
   filterScoutingMenuProperties,
-  filterSpecificMatches,
+  filterOnly,
   filterTeamProperties,
   sortMatchesByCompLevel,
   sortTeams
@@ -33,7 +33,7 @@ export async function fetchMatchesForScoutingMenu (matchesFilter) {
   matches = filterScoutingMenuProperties(matches)
   matches = sortMatchesByCompLevel(matches)
   if (matchesFilter) {
-    matches = filterSpecificMatches(matches, matchesFilter)
+    matches = filterOnly(matches, matchesFilter)
   }
   return matches
 }
